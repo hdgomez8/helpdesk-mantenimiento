@@ -1,4 +1,4 @@
-function init() {}
+function init() { }
 
 $(document).ready(function () {
   var tick_id = getUrlParameter("ID");
@@ -207,67 +207,76 @@ $(document).on("click", "#btnenviar", function () {
 });
 
 $(document).on("click", "#btncerrarticket", function () {
-  /* TODO: Preguntamos antes de cerrar el ticket */
-  swal(
-    {
-      title: "HelpDesk",
-      text: "Esta seguro de Cerrar el Ticket?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-warning",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-    },
-    function (isConfirm) {
-      if (isConfirm) {
-        var tick_id = getUrlParameter("ID");
-        var opcionSatisfaccion = $("#opcionSatisfaccion").val();
-        /* TODO: Actualizamos el ticket  */
-        $.post(
-          "../../controller/ticket.php?op=update_x_cliente",
-          { tick_id: tick_id, opcionSatisfaccion: opcionSatisfaccion },
-          function (data) {
-            console.log(opcionSatisfaccion);
-          }
-        );
+  var opcionSatisfaccion = $("input[name='opcionSatisfaccion']:checked").val();
 
-        /* TODO:Alerta de ticket cerrado via email */
-        $.post(
-          "../../controller/email.php?op=ticket_cerrado",
-          { tick_id: tick_id },
-          function (data) {}
-        );
-
-        /* TODO:Alerta de ticket cerrado via Whaspp */
-        $.post(
-          "../../controller/whatsapp.php?op=w_ticket_cerrado",
-          { tick_id: tick_id },
-          function (data) {}
-        );
-
-        /* TODO:Llamamos a funcion listardetalle */
-        listardetalle(tick_id);
-
-        /* TODO: Alerta de confirmacion */
-        swal(
-          {
-            title: "HelpDesk!",
-            text: "Ticket Cerrado correctamente.",
-            type: "success",
-            confirmButtonClass: "btn-success",
-          },
-          function (result) {
-            console.log(result); // Imprimir el resultado en la consola
-            if (result) {
-              window.location.href =
-                "http://192.168.1.194:8080/helpdesk/view/ConsultarTicketPendientesCierreCliente/";
+  // Verificar si el campo está vacío o es nulo/undefined
+  if (opcionSatisfaccion === "" || opcionSatisfaccion === null || opcionSatisfaccion === undefined) {
+    // El campo está vacío o es nulo/undefined, muestra una alerta o realiza alguna acción de manejo de errores
+    swal("Error", "¿Recibió Trabajo a Satisfacción? no puede estar vacío.", "error");
+  } else {
+    /* TODO: Preguntamos antes de cerrar el ticket */
+    swal(
+      {
+        title: "HelpDesk",
+        text: "Esta seguro de Cerrar el Ticket?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+      },
+      function (isConfirm) {
+        if (isConfirm) {
+          var tick_id = getUrlParameter("ID");
+          var opcionSatisfaccion = $("#opcionSatisfaccion").val();
+          /* TODO: Actualizamos el ticket  */
+          $.post(
+            "../../controller/ticket.php?op=update_x_cliente",
+            { tick_id: tick_id, opcionSatisfaccion: opcionSatisfaccion },
+            function (data) {
+              console.log(opcionSatisfaccion);
             }
-          }
-        );
+          );
+
+          /* TODO:Alerta de ticket cerrado via email */
+          $.post(
+            "../../controller/email.php?op=ticket_cerrado",
+            { tick_id: tick_id },
+            function (data) { }
+          );
+
+          /* TODO:Alerta de ticket cerrado via Whaspp */
+          $.post(
+            "../../controller/whatsapp.php?op=w_ticket_cerrado",
+            { tick_id: tick_id },
+            function (data) { }
+          );
+
+          /* TODO:Llamamos a funcion listardetalle */
+          listardetalle(tick_id);
+
+          /* TODO: Alerta de confirmacion */
+          swal(
+            {
+              title: "HelpDesk!",
+              text: "Ticket Cerrado correctamente.",
+              type: "success",
+              confirmButtonClass: "btn-success",
+            },
+            function (result) {
+              console.log(result); // Imprimir el resultado en la consola
+              if (result) {
+                var dir_proyecto = document.getElementById("dir_proyecto").value;
+                window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesCierreCliente/";
+              }
+            }
+          );
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 function listardetalle(tick_id) {

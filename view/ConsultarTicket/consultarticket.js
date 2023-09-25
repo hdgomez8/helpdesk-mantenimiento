@@ -11,6 +11,7 @@ function init() {
 $(document).ready(function () {
 
   var datosAdicionales = { "usu_id": usu_id };
+  
 
   if (rol_id==1) {
     
@@ -44,8 +45,9 @@ $(document).ready(function () {
 
 /* TODO: Link para poder ver el detalle de ticket en otra ventana */
 function ver(tick_id) {
+  var dir_proyecto = document.getElementById("dir_proyecto").value;
   window.location.href =
-    "http://192.168.1.194:8080/helpdesk/view/DetalleTicket/?ID=" + tick_id;
+  dir_proyecto + "view/DetalleTicket/?ID=" + tick_id;
 }
 
 init();

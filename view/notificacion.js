@@ -23,7 +23,7 @@ function mostrar_notificacion(){
                 $.notify({
                     icon: 'glyphicon glyphicon-star',
                     message: data.not_mensaje,
-                    url: "http://192.168.1.194:8080/helpdesk/view/DetalleTicket/?ID="+data.tick_id
+                    url: dir_proyecto + "view/DetalleTicket/?ID="+data.tick_id
                 });
 
                 $.post("../../controller/notificacion.php?op=actualizar", {not_id : data.not_id}, function (data) {

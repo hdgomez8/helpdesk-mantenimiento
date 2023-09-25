@@ -1,5 +1,6 @@
 <?php
-  require_once("../../config/conexion.php"); 
+  require_once("../../config/conexion.php");
+$dir_proyecto = $settings['DIRECCION_PROYECTO']; 
   if(isset($_SESSION["usu_id"])){ 
 ?>
 <!DOCTYPE html>

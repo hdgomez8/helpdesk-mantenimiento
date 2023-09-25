@@ -1,5 +1,6 @@
 <?php
 require_once("../../config/conexion.php");
+$dir_proyecto = $settings['DIRECCION_PROYECTO'];
 if (isset($_SESSION["usu_id"])) {
 ?>
   <!DOCTYPE html>
@@ -31,6 +32,7 @@ if (isset($_SESSION["usu_id"])) {
             <div class="tbl-row">
               <div class="tbl-cell">
                 <h3 id="lblnomidticket">Detalle Ticket - 1</h3>
+                <input type="hidden" id="dir_proyecto" value="<?php echo $dir_proyecto; ?>">
                 <div id="lblestado"></div>
                 <span class="label label-pill label-primary" id="lblnomusuario"></span>
                 <span class="label label-pill label-default" id="lblfechcrea"></span>
@@ -144,10 +146,10 @@ if (isset($_SESSION["usu_id"])) {
                     <label class="form-label">¿Requiere Materiales?</label>
                     <div class="radio-group">
                       <label>
-                        <input type="radio" name="opcionMateriales" id="opcionMateriales" value="si" onclick="ocultarCamposRequiereMateriales()"> Sí
+                        <input type="radio" name="opcionMateriales" id="opcionMaterialesSi" value="si" onclick="ocultarCamposRequiereMateriales()"> Sí
                       </label>
                       <label>
-                        <input type="radio" name="opcionMateriales" id="opcionMateriales" value="no" onclick="mostrarCamposRequiereMateriales()"> No
+                        <input type="radio" name="opcionMateriales" id="opcionMaterialesNo" value="no" onclick="mostrarCamposRequiereMateriales()"> No
                       </label>
                     </div>
                   </div>

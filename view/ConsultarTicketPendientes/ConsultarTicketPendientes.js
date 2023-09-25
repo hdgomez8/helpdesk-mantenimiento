@@ -34,8 +34,9 @@ $(document).ready(function () {
 
 /* TODO: Link para poder ver el detalle de ticket en otra ventana */
 function ver(tick_id) {
+  var dir_proyecto = document.getElementById("dir_proyecto").value;
   window.location.href =
-    "http://192.168.1.194:8080/helpdesk/view/DetalleTicket-Pendientes/?ID=" +
+  dir_proyecto + "view/DetalleTicket-Pendientes/?ID=" +
     tick_id;
 }
 

@@ -1,5 +1,6 @@
 <?php
 require_once("../../config/conexion.php");
+$dir_proyecto = $settings['DIRECCION_PROYECTO'];
 if (isset($_SESSION["usu_id"])) {
 ?>
 	<!DOCTYPE html>
@@ -26,6 +27,7 @@ if (isset($_SESSION["usu_id"])) {
 						<div class="tbl-row">
 							<div class="tbl-cell">
 								<h3>Solicitudes Pendientes Por Cierre Jefe Mantenimiento</h3>
+								<input type="hidden" id="dir_proyecto" value="<?php echo $dir_proyecto; ?>">
 								<ol class="breadcrumb breadcrumb-simple">
 									<li><a href="../Home">Inicio</a></li>
 									<li class="active">Solicitudes Pendientes Por Cierre Jefe Mantenimiento</li>
