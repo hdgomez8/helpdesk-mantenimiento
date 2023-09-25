@@ -15,7 +15,8 @@ $(document).ready(function () {
 
 /* TODO: Link para poder ver el detalle de ticket en otra ventana */
 function ver(tick_id) {
-  window.location.href =('http://192.168.1.194:8080/helpdesk/view/DetalleTicket-Cierre-Jefe-Mantenimiento/?ID=' + tick_id);
+  var dir_proyecto = document.getElementById("dir_proyecto").value;
+  window.location.href =(dir_proyecto + "view/DetalleTicket-Cierre-Jefe-Mantenimiento/?ID=" + tick_id);
 }
 
 init();
