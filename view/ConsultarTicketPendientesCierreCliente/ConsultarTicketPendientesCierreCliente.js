@@ -11,7 +11,6 @@ function init() {
 $(document).ready(function () {
   // Realizar funcion
   var datosAdicionales = { usu_id: usu_id };
-  var datosAdicionales = { usu_id: usu_id };
 
   if (rol_id == 1) {
   } else if (rol_id == 2) {
@@ -36,8 +35,9 @@ $(document).ready(function () {
 
 /* TODO: Link para poder ver el detalle de ticket en otra ventana */
 function ver(tick_id) {
+  var dir_proyecto = document.getElementById("dir_proyecto").value;
   window.location.href =
-    "http://192.168.1.194:8080/helpdesk/view/DetalleTicket-Cierre-Cliente/?ID=" +
+    dir_proyecto + "view/DetalleTicket-Cierre-Cliente/?ID=" +
     tick_id;
 }
 
