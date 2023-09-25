@@ -365,8 +365,29 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
-            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
+
+            if ($row["tick_estado"] == "Cliente") {
+                $sub_array[] = '<span class="label label-pill label-default">Cliente</span>';
+            } else if ($row["tick_estado"] == "Asignado") {
+                $sub_array[] = '<span class="label label-pill label-success">Asignado</span>';
+            } else if ($row["tick_estado"] == "Pendiente Por Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente Por Materiales</span>';
+            } else if ($row["tick_estado"] == "Cierre Técnico") {
+                $sub_array[] = '<span class="label label-pill label-warning">Cierre Técnico</span>';
+            } else if ($row["tick_estado"] == "Pendiente Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Materiales</span>';
+            } else if ($row["tick_estado"] == "En Compras") {
+                $sub_array[] = '<span class="label label-pill label-success">En<br/>Compras</span>';
+            } else if ($row["tick_estado"] == "Pendiente Proveedor") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Proveedor</span>';
+            } else if ($row["tick_estado"] == "Cierre Cliente") {
+                $sub_array[] = '<span class="label label-pill label-warning">Cierre Cliente</span>';
+            } else if ($row["tick_estado"] == "Asignado Con Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Asignado Con<br/>Materiales</span>';
+            } else {
+                $sub_array[] = '<span class="label label-pill label-warning">Cerrado</span>';
+            }
 
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
@@ -376,13 +397,59 @@ switch ($_GET["op"]) {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
+            if ($row["fech_sol_mater"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
+            }
+
+            if ($row["fech_env_compras"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
+            }
+
+            if ($row["fech_sol_proveedor"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
+            }
+
+            if ($row["fech_asig_con_mater"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
+            }
+
+            if ($row["fech_cier_tecn"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
+            }
+
+            if ($row["fech_cier_usu"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_usu"]));
+            }
+
             if ($row["fech_cierre"] == null) {
                 $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cierre"]));
             }
 
+            if ($row["usu_asig"] == null) {
+                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">Sin Asignar</span></a>';
+            } else {
+                $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
+                foreach ($datos1 as $row1) {
+                    $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
+                }
+            }
+
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
+            $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
             $data[] = $sub_array;
         }
 
@@ -694,9 +761,11 @@ switch ($_GET["op"]) {
                 $output["tick_descrip_act_rep_efec"] = $row["tick_descrip_act_rep_efec"];
                 $output["tick_estado"] = $row["tick_estado"];
                 $output["usu_correo"] = $row["usu_correo"];
+                $output["usu_nom"] = $row["usu_nom"];
                 $output["emp_nom"] = $row["emp_nom"];
                 $output["areas_nom"] = $row["areas_nom"];
                 $output["ubicacion_nom"] = $row["ubicacion_nom"];
+                $output["correo_soporte"] = $row["correo_soporte"];
                 $output["tip_man_nom"] = $row["tip_man_nom"];
                 $output["sis_nom"] = $row["sis_nom"];
                 $output["prio_nom"] = $row["prio_nom"];

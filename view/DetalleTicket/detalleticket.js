@@ -206,6 +206,7 @@ $(document).on("click","#btncerrarticket", function(){
 });
 
 function listardetalle(tick_id){
+    var tick_id = getUrlParameter('ID');
     /* TODO: Mostramos informacion de detalle de ticket */
     $.post("../../controller/ticket.php?op=listardetalle", { tick_id : tick_id }, function (data) {
         $('#lbldetalle').html(data);
@@ -213,12 +214,10 @@ function listardetalle(tick_id){
 
     /* TODO: Mostramos informacion del ticket en inputs */
     $.post("../../controller/ticket.php?op=mostrar", { tick_id : tick_id }, function (data) {
+        console.log(data);
         data = JSON.parse(data);
         $('#lblestado').html(data.tick_estado);
-        $('#lblnomusuario').html(data.usu_nom +' '+data.usu_ape);
-        $('#lblfechcrea').html(data.fech_crea);
         
-
         $('#lblnomidticket').html("Detalle Ticket - "+data.tick_id);
 
         $('#tick_titulo').val(data.tick_titulo);

@@ -1,5 +1,6 @@
 <?php
 require_once("../../config/conexion.php");
+$dir_proyecto = $settings['DIRECCION_PROYECTO'];
 if (isset($_SESSION["usu_id"])) {
 ?>
   <!DOCTYPE html>
@@ -25,6 +26,7 @@ if (isset($_SESSION["usu_id"])) {
             <div class="tbl-row">
               <div class="tbl-cell">
                 <h3 id="lblnomidticket">Detalle Ticket - 1</h3>
+                <input type="hidden" id="dir_proyecto" value="<?php echo $dir_proyecto; ?>">
                 <!-- <div id="lblestado"></div> -->
                 <span class="label label-pill label-primary" id="lblnomusuario"></span>
                 <span class="label label-pill label-default" id="lblfechcrea"></span>
@@ -139,10 +141,10 @@ if (isset($_SESSION["usu_id"])) {
                   <label class="form-label">¿Recibió Trabajo a Satisfacción?</label>
                   <div class="radio-group">
                     <label>
-                      <input type="radio" name="opcionSatisfaccion" id="opcionSatisfaccion" value="1"> Sí
+                      <input type="radio" name="opcionSatisfaccion" id="opcionSatisfaccionSi" value="1"> Sí
                     </label>
                     <label>
-                      <input type="radio" name="opcionSatisfaccion" id="opcionSatisfaccion" value="0"> No
+                      <input type="radio" name="opcionSatisfaccion" id="opcionSatisfaccionNo" value="0"> No
                     </label>
                   </div>
                 </div>

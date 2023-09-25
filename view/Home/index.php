@@ -1,5 +1,6 @@
 <?php
 require_once("../../config/conexion.php");
+$dir_proyecto = $settings['DIRECCION_PROYECTO'];
 if (isset($_SESSION["usu_id"])) {
 ?>
 	<!DOCTYPE html>
@@ -33,7 +34,7 @@ if (isset($_SESSION["usu_id"])) {
 	<body class="with-side-menu">
 
 		<?php require_once("../MainHeader/header.php"); ?>
-
+		<input type="hidden" id="dir_proyecto" value="<?php echo $dir_proyecto; ?>">
 		<div class="mobile-menu-left-overlay"></div>
 
 		<?php require_once("../MainNav/nav.php"); ?>

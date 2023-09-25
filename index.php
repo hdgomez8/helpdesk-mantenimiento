@@ -1,3 +1,8 @@
+<?php
+$settings = require 'settings.php';
+$dir_proyecto = $settings['DIRECCION_PROYECTO'];
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -70,7 +75,7 @@
             <div class="container-fluid">
                 <h1>Solicitudes Clínica Marcaribe</h1>
 
-                <a href="http://192.168.1.194:8080/helpdesk/indexLoginMant.php" class="button-link">
+                <a href="<?php echo $dir_proyecto; ?>indexLoginMant.php" class="button-link">
                     <img src="./public/img/Mantenimiento.png" width="200" height="200" alt="logo-Mantenimiento" />
                     <span>MANTENIMIENTO</span>
                 </a>

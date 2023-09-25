@@ -29,7 +29,8 @@ function listardetalle(tick_id){
         $('#lblfechcierre').val(data.fech_cierre);
 
         if (data.tick_estado_texto=='Abierto') {
-            window.open('http://192.168.1.194:8080/helpdesk/','_self');
+            var dir_proyecto = document.getElementById("dir_proyecto").value;
+            window.open(dir_proyecto,'_self');
         }else{
             if (data.tick_estre==null){
 

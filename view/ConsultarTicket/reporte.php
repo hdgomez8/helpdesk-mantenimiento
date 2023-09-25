@@ -1,5 +1,6 @@
 <?php
 require_once("../../config/conexion.php");
+$dir_proyecto = $settings['DIRECCION_PROYECTO'];
 $ticket_id = $_GET['tick_id'];
 
 $conectar = new PDO("mysql:local=localhost;dbname=ticket", "root", "Orion1225");

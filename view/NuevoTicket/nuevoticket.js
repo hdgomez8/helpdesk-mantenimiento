@@ -77,8 +77,9 @@ function showAlert(message) {
 
 // Función para cerrar la alerta
 function closeAlert() {
+  var dir_proyecto = document.getElementById("dir_proyecto").value;
   customAlert.style.display = "none";
-  window.location.href = "http://192.168.1.194:8080/helpdesk/view/Home/";
+  window.location.href = dir_proyecto + "view/Home/";
 }
 
 // Escuchar el evento click en el botón de cerrar

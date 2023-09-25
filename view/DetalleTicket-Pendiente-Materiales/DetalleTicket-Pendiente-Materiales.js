@@ -191,8 +191,9 @@ $(document).on("click", "#btnreasignarticket", function () {
         function (result) {
           console.log(result); // Imprimir el resultado en la consola
           if (result) {
+            var dir_proyecto = document.getElementById("dir_proyecto").value;
             window.location.href =
-              "http://192.168.1.194:8080/helpdesk/view/ConsultarTicketPendientesCompras/";
+            dir_proyecto + "view/ConsultarTicketPendientesCompras/";
           }
         });
       }
@@ -241,8 +242,9 @@ $(document).on("click", "#btnenviarcompras", function () {
         function (result) {
           console.log(result); // Imprimir el resultado en la consola
           if (result) {
+            var dir_proyecto = document.getElementById("dir_proyecto").value;
             window.location.href =
-              "http://192.168.1.194:8080/helpdesk/view/ConsultarTicketPendientesCompras/";
+            dir_proyecto + "view/ConsultarTicketPendientesCompras/";
           }
         });
       }
