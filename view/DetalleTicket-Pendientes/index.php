@@ -146,10 +146,10 @@ if (isset($_SESSION["usu_id"])) {
                     <label class="form-label">¿Requiere Materiales?</label>
                     <div class="radio-group">
                       <label>
-                        <input type="radio" name="opcionMateriales" id="opcionMateriales" value="si" onclick="ocultarCamposRequiereMateriales()"> Sí
+                        <input type="radio" name="opcionMateriales" id="opcionMaterialesSi" value="si" onclick="ocultarCamposRequiereMateriales()"> Sí
                       </label>
                       <label>
-                        <input type="radio" name="opcionMateriales" id="opcionMateriales" value="no" onclick="mostrarCamposRequiereMateriales()"> No
+                        <input type="radio" name="opcionMateriales" id="opcionMaterialesNo" value="no" onclick="mostrarCamposRequiereMateriales()"> No
                       </label>
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-function init() {}
+function init() { }
 
 $(document).ready(function () {
   var tick_id = getUrlParameter("ID");
@@ -261,64 +261,75 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 $(document).on("click", "#btncerrarticket", function () {
-  /* TODO: Preguntamos antes de cerrar el ticket */
-  swal(
-    {
-      title: "HelpDesk",
-      text: "Esta seguro de Cerrar el Ticket?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-warning",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-    },
-    function (isConfirm) {
-      if (isConfirm) {
-        var tick_id = getUrlParameter("ID");
-        var usu_id = $("#user_idx").val();
-        var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
-        var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
+  var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
+  var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
+  var opcionMateriales = $("input[name='opcionMateriales']:checked").val();
 
-        /* TODO: Actualizamos el ticket  */
-        $.post(
-          "../../controller/ticket.php?op=update_x_tecnico",
-          {
-            tick_id: tick_id,
-            tickd_descrip_diag_mant: tickd_descrip_diag_mant,
-            tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec,
-          },
-          function (data) {}
-        );
+  if (!tickd_descrip_diag_mant.trim() || !tickd_descrip_act_rep_efec.trim()|| opcionMateriales === "" || opcionMateriales === null || opcionMateriales === undefined) {
+    // El campo está vacío, muestra un mensaje de error
+    swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento y una descripcion de actividad antes de Cerrar la solicitud.", "error");
+  } else {
+    /* TODO: Preguntamos antes de cerrar el ticket */
+    swal(
+      {
+        title: "HelpDesk",
+        text: "Esta seguro de Cerrar el Ticket?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+      },
+      function (isConfirm) {
+        if (isConfirm) {
+          var tick_id = getUrlParameter("ID");
+          var usu_id = $("#user_idx").val();
+          var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
+          var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
 
-        $.post(
-          "../../controller/email.php?op=ticket_cerrado",
-          { tick_id: tick_id },
-          function (data) {
-            // Tu código de éxito aquí
-          }
-        ).fail(function (jqXHR, textStatus, errorThrown) {
-          console.error("Error al enviar el correo:", textStatus, errorThrown);
-        });
+          /* TODO: Actualizamos el ticket  */
+          $.post(
+            "../../controller/ticket.php?op=update_x_tecnico",
+            {
+              tick_id: tick_id,
+              tickd_descrip_diag_mant: tickd_descrip_diag_mant,
+              tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec,
+            },
+            function (data) { }
+          );
 
-        swal(
-          {
-            title: "Ticket Cerrado!",
-            text: "Ticket Cerrado correctamente.",
-            type: "success",
-            confirmButtonClass: "btn-success",
-          },
-          function (result) {
-            console.log(result); // Imprimir el resultado en la consola
-            if (result) {
-              window.location.href =
-                "http://192.168.1.194:8080/helpdesk/view/ConsultarTicketPendientes/";
+          $.post(
+            "../../controller/email.php?op=ticket_cerrado",
+            { tick_id: tick_id },
+            function (data) {
+              // Tu código de éxito aquí
             }
-          }
-        );
+          ).fail(function (jqXHR, textStatus, errorThrown) {
+            console.error("Error al enviar el correo:", textStatus, errorThrown);
+          });
+
+          swal(
+            {
+              title: "Ticket Cerrado!",
+              text: "Ticket Cerrado correctamente.",
+              type: "success",
+              confirmButtonClass: "btn-success",
+            },
+            function (result) {
+              console.log(result); // Imprimir el resultado en la consola
+              if (result) {
+                var dir_proyecto = document.getElementById("dir_proyecto").value;
+                window.location.href =
+                  dir_proyecto + "view/ConsultarTicketPendientes/";
+              }
+            }
+          );
+        }
       }
-    }
-  );
+    );
+  }
+
 });
 
 $(document).on("click", "#btnsolicitarmateriales2", function () {
@@ -421,51 +432,58 @@ $(document).on("click", "#btnsolicitarmateriales", function () {
 });
 
 $(document).on("click", "#btnsolicitarproveedor", function () {
+  var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
   /* TODO: Preguntamos antes de cerrar el ticket */
-  swal(
-    {
-      title: "Solicitar Proveedor",
-      text: "Esta seguro de solicitar el proveedor?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-warning",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-    },
-    function (isConfirm) {
-      if (isConfirm) {
-        var tick_id = getUrlParameter("ID");
-        console.log(tick_id);
-        /* TODO: Actualizamos el ticket  */
-        $.post(
-          "../../controller/ticket.php?op=update_x_tecnico_proveedor",
-          {
-            tick_id: tick_id,
-          },
-          function (data) {}
-        );
-        // listardetalle(tick_id);
+  if (!tickd_descrip_diag_mant.trim()) {
+    // El campo está vacío, muestra un mensaje de error
+    swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento antes de solicitar al proveedor.", "error");
+  } else {
+    swal(
+      {
+        title: "Solicitar Proveedor",
+        text: "Esta seguro de solicitar el proveedor?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+      },
+      function (isConfirm) {
+        if (isConfirm) {
+          var tick_id = getUrlParameter("ID");
+          console.log(tick_id);
+          /* TODO: Actualizamos el ticket  */
+          $.post(
+            "../../controller/ticket.php?op=update_x_tecnico_proveedor",
+            {
+              tick_id: tick_id,
+            },
+            function (data) { }
+          );
+          // listardetalle(tick_id);
 
-        /* TODO: Alerta de confirmacion */
-        swal(
-          {
-            title: "Proveedor Solicitado",
-            text: "Proveedor Solicitado Exitosamente.!",
-            type: "success",
-            confirmButtonClass: "btn-success",
-          },
-          function (result) {
-            console.log(result); // Imprimir el resultado en la consola
-            if (result) {
-              window.location.href =
-                "http://192.168.1.194:8080/helpdesk/view/ConsultarTicketPendientes/";
+          /* TODO: Alerta de confirmacion */
+          swal(
+            {
+              title: "Proveedor Solicitado",
+              text: "Proveedor Solicitado Exitosamente.!",
+              type: "success",
+              confirmButtonClass: "btn-success",
+            },
+            function (result) {
+              console.log(result); // Imprimir el resultado en la consola
+              if (result) {
+                window.location.href =
+                  "http://192.168.1.194:8080/helpdesk/view/ConsultarTicketPendientes/";
+              }
             }
-          }
-        );
+          );
+        }
       }
-    }
-  );
+    );
+  }
+
 });
 
 function listardetalle(tick_id) {
@@ -515,7 +533,7 @@ function ocultarCamposRequiereProveedor() {
   document.getElementById("solicitar_proveedor").style.display = "block";
   document.getElementById("cerrar_ticket").style.display = "none";
   document.getElementById("solicitar_materiales").style.display = "none";
-  document.getElementById("diagnostico_mantenimiento").style.display = "none";
+  document.getElementById("diagnostico_mantenimiento").style.display = "block";
   document.getElementById("descripcion_actividades").style.display = "none";
   document.getElementById("repuestos_accesorios").style.display = "none";
 }

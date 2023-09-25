@@ -694,9 +694,11 @@ switch ($_GET["op"]) {
                 $output["tick_descrip_act_rep_efec"] = $row["tick_descrip_act_rep_efec"];
                 $output["tick_estado"] = $row["tick_estado"];
                 $output["usu_correo"] = $row["usu_correo"];
+                $output["usu_nom"] = $row["usu_nom"];
                 $output["emp_nom"] = $row["emp_nom"];
                 $output["areas_nom"] = $row["areas_nom"];
                 $output["ubicacion_nom"] = $row["ubicacion_nom"];
+                $output["correo_soporte"] = $row["correo_soporte"];
                 $output["tip_man_nom"] = $row["tip_man_nom"];
                 $output["sis_nom"] = $row["sis_nom"];
                 $output["prio_nom"] = $row["prio_nom"];
