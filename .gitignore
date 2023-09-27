@@ -1,3 +1,4 @@
 *.log
 node_modules/
 *.sql
+config/settings.php
