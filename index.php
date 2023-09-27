@@ -1,5 +1,5 @@
 <?php
-$settings = require 'settings.php';
+$settings = require 'config/settings.php';
 $dir_proyecto = $settings['DIRECCION_PROYECTO'];
 ?>
 
