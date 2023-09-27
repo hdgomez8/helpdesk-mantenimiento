@@ -811,6 +811,7 @@ switch ($_GET["op"]) {
                 $output["areas_nom"] = $row["areas_nom"];
                 $output["ubicacion_nom"] = $row["ubicacion_nom"];
                 $output["emp_nom"] = $row["emp_nom"];
+                $output["nombre_soporte"] = $row["nombre_soporte"];
             }
             echo json_encode($output);
         }

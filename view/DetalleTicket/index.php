@@ -97,6 +97,7 @@ if (isset($_SESSION["usu_id"])) {
                   <input type="text" class="form-control" id="prioridad" name="prioridad" readonly>
                 </fieldset>
               </div>
+              
               <div class="col-lg-3">
                 <fieldset class="form-group">
                   <label class="form-label semibold" for="tecnico">Técnico</label>
