@@ -116,6 +116,7 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
 
             if ($row["tick_estado"] == "Cliente") {
@@ -365,6 +366,7 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
 
             if ($row["tick_estado"] == "Cliente") {
@@ -601,6 +603,7 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
 
             if ($row["tick_estado"] == "Cliente") {
@@ -811,6 +814,7 @@ switch ($_GET["op"]) {
                 $output["areas_nom"] = $row["areas_nom"];
                 $output["ubicacion_nom"] = $row["ubicacion_nom"];
                 $output["emp_nom"] = $row["emp_nom"];
+                $output["nombre_soporte"] = $row["nombre_soporte"];
             }
             echo json_encode($output);
         }
