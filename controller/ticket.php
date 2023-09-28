@@ -254,6 +254,40 @@ switch ($_GET["op"]) {
         );
         echo json_encode($results);
         break;
+    case "listar_x_usu_est_pend_cierr_cliente_general":
+        $datos = $ticket->listar_x_usu_est_pend_cierr_cliente_general($_POST["usu_id"]);
+        $data = array();
+        foreach ($datos as $row) {
+            $sub_array = array();
+            $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["tick_titulo"];
+
+            $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
+
+            if ($row["fech_asig"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+            }
+
+            if ($row["fech_cier_tecn"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
+            }
+
+            $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-check" aria-hidden="true"></i></button>';
+            $data[] = $sub_array;
+        }
+
+        $results = array(
+            "sEcho" => 1,
+            "iTotalRecords" => count($data),
+            "iTotalDisplayRecords" => count($data),
+            "aaData" => $data
+        );
+        echo json_encode($results);
+        break;
     case "listar_x_est_pend_cierr_jefe_mant":
         $datos = $ticket->listar_x_est_pend_cierr_jefe_mant();
         $data = array();
@@ -1004,6 +1038,15 @@ switch ($_GET["op"]) {
         break;
     case "totalxvistobueno";
         $datos = $ticket->get_ticket_total_x_visto_bueno();
+        if (is_array($datos) == true and count($datos) > 0) {
+            foreach ($datos as $row) {
+                $output["TOTAL"] = $row["TOTAL"];
+            }
+            echo json_encode($output);
+        }
+        break;
+    case "totalxvistobuenogeneral";
+        $datos = $ticket->get_ticket_total_x_visto_bueno_general($_POST["usu_id"]);
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
                 $output["TOTAL"] = $row["TOTAL"];

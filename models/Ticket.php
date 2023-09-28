@@ -125,6 +125,39 @@ class Ticket extends Conectar
     }
 
     /* TODO: Listar ticket segun id de usuario */
+    public function listar_x_usu_est_pend_cierr_cliente_general($usu_id)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "SELECT 
+                        tm_ticket.tick_id,
+                        tm_ticket.usu_id,
+                        tm_ticket.tick_titulo,
+                        tm_ticket.tick_descrip,
+                        tm_ticket.tick_estado,
+                        tm_ticket.fech_crea,
+                        tm_ticket.fech_cierre,
+                        tm_ticket.fech_cier_tecn,
+                        tm_ticket.fech_cier_usu,
+                        tm_ticket.usu_asig,
+                        tm_ticket.fech_asig,
+                        tm_usuario.usu_nom,
+                        tm_usuario.usu_ape,
+                        tm_usuario.usu_correo
+                        FROM 
+                        tm_ticket
+                        INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                        WHERE
+                        tm_ticket.est = 1
+                        AND tm_ticket.tick_estado = 'Cierre Técnico'
+                        AND tm_usuario.usu_id != ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $usu_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
+    /* TODO: Listar ticket segun id de usuario */
     public function listar_x_est_pend_cierr_jefe_mant()
     {
         $conectar = parent::conexion();
@@ -1002,6 +1035,17 @@ class Ticket extends Conectar
         parent::set_names();
         $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tick_estado = 'Cierre Técnico'";
         $sql = $conectar->prepare($sql);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
+    public function get_ticket_total_x_visto_bueno_general($usu_id)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tick_estado = 'Cierre Técnico' AND usu_asig != ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $usu_id);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
