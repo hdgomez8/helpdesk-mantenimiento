@@ -497,6 +497,43 @@ switch ($_GET["op"]) {
         );
         echo json_encode($results);
         break;
+
+    case "listar_x_responsable_pendiente_tecnicos":
+        $datos = $ticket->listar_ticket_x_responsable_pendiente_tecnicos($_POST["usu_asig"]);
+        $data = array();
+        foreach ($datos as $row) {
+            $sub_array = array();
+            $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
+            $sub_array[] = $row["tick_titulo"];
+
+            $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
+
+            if ($row["fech_asig"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+            }
+
+            if ($row["fech_cierre"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cierre"]));
+            }
+
+            $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
+            $data[] = $sub_array;
+        }
+
+        $results = array(
+            "sEcho" => 1,
+            "iTotalRecords" => count($data),
+            "iTotalDisplayRecords" => count($data),
+            "aaData" => $data
+        );
+        echo json_encode($results);
+        break;
+
     case "listar_x_responsable_tecnico":
         $datos = $ticket->listar_ticket_x_responsable_tecnico($_POST["usu_asig"]);
         $data = array();
