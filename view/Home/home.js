@@ -83,9 +83,14 @@ $(document).ready(function () {
       }
     );
 
-    $.post("../../controller/ticket.php?op=totalxvistobueno", function (data) {
+    $.post("../../controller/usuario.php?op=total_x_visto_bueno",{ usu_id: usu_id }, function (data) {
       data = JSON.parse(data);
-      $("#lbltotalxvistobueno").html(data.TOTAL);
+      $("#lbltotalxvistobuenojefe").html(data.TOTAL);
+    });
+
+    $.post("../../controller/ticket.php?op=totalxvistobuenogeneral",{ usu_id: usu_id }, function (data) {
+      data = JSON.parse(data);
+      $("#lbltotalxvistobuenogeneral").html(data.TOTAL);
     });
 
     $.post("../../controller/ticket.php?op=totalxcerrar", function (data) {
@@ -133,6 +138,7 @@ $(document).ready(function () {
       $("#lbltotalxvistobueno").html(data.TOTAL);
     });
 
+    
     $.post("../../controller/usuario.php?op=totalcerrado",{ usu_id: usu_id }, function (data) {
       data = JSON.parse(data);
       $("#lbltotalcerrado").html(data.TOTAL);
