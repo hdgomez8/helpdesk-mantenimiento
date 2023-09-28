@@ -43,6 +43,7 @@ if (isset($_SESSION["usu_id"])) {
 							<thead>
 								<tr>
 									<th style="width: 5%;">Nro.<br>Ticket</th>
+									<th class="d-none d-sm-table-cell" style="width: 30%;">Usuario</th>
 									<th class="d-none d-sm-table-cell" style="width: 30%;">Título</th>
 									<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br>Creación</th>
