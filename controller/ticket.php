@@ -570,7 +570,7 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
     case "listar_x_responsable_proveedores":
-        $datos = $ticket->listar_ticket_x_responsable_proveedores($_POST["usu_asig"]);
+        $datos = $ticket->listar_ticket_x_responsable_proveedores();
         $data = array();
         foreach ($datos as $row) {
             $sub_array = array();
@@ -1026,7 +1026,7 @@ switch ($_GET["op"]) {
         echo json_encode($output);
         break;
     case "totalxrealizarproveedores":
-        $datos = $ticket->get_ticket_total_x_realizar_proveedores($_POST["usu_id"]);
+        $datos = $ticket->get_ticket_total_x_realizar_proveedores();
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
                 $output["TOTAL"] = $row["TOTAL"];
