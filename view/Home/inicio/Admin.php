@@ -84,9 +84,21 @@
                     <a href="..\ConsultarTicketPendientesCierreCliente\">
                         <article class="statistic-box yellow">
                             <div>
-                                <div class="number" id="lbltotalxvistobueno"></div>
+                                <div class="number" id="lbltotalxvistobuenojefe"></div>
                                 <div class="caption">
-                                    <div>Visto Bueno</div>
+                                    <div>Visto Bueno Jefe</div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+                <div class="col-sm-2">
+                    <a href="..\ConsultarTicketPendientesCierreClienteGeneral\">
+                        <article class="statistic-box yellow">
+                            <div>
+                                <div class="number" id="lbltotalxvistobuenogeneral"></div>
+                                <div class="caption">
+                                    <div>Visto Bueno General</div>
                                 </div>
                             </div>
                         </article>
