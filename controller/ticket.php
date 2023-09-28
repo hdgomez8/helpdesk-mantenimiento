@@ -116,6 +116,7 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
 
             if ($row["tick_estado"] == "Cliente") {
@@ -365,6 +366,7 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
 
             if ($row["tick_estado"] == "Cliente") {
@@ -601,6 +603,7 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
 
             if ($row["tick_estado"] == "Cliente") {
