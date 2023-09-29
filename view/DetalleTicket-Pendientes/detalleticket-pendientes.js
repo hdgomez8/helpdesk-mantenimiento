@@ -507,6 +507,7 @@ function listardetalle(tick_id) {
       $('#area').val(data.areas_nom);
       $('#ubicacion').val(data.ubicacion_nom);
       $("#tickd_descripusu").summernote("code", data.tick_descrip);
+      $('#tecnico').val(data.nombre_soporte);
     }
   );
 }

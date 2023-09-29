@@ -96,7 +96,7 @@ if ($_SESSION["rol_id"] == 1) {
             </li>
 
             <li class="blue-dirty">
-                <a href="..\ConsultarTicketPendientes\">
+                <a href="..\ConsultarTicketPendientesTecnicos\">
                     <span class="glyphicon glyphicon-user"></span>
                     <span class="lbl">Solicitudes Pendientes Por Realizar Tecnicos</span>
                     <span id="lbltotalxrealizartecnicosadmin"></span>

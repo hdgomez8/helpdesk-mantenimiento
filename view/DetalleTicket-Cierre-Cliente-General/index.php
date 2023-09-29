@@ -83,20 +83,19 @@ if (isset($_SESSION["usu_id"])) {
               </fieldset>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tick_sistemas">Sistemas</label>
                 <input type="text" class="form-control" id="tick_sistemas" name="tick_sistemas" readonly>
               </fieldset>
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-3">
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tick_prioridad">Prioridad</label>
                 <input type="text" class="form-control" id="tick_prioridad" name="tick_prioridad" readonly>
               </fieldset>
             </div>
-
 
             <div class="col-lg-3">
               <fieldset class="form-group">
@@ -143,6 +142,9 @@ if (isset($_SESSION["usu_id"])) {
               </fieldset>
             </div>
 
+            <?php
+            if ($_SESSION["rol_id"] != "2") {
+echo '
             <div class="col-lg-12">
               <div class="col-lg-4">
                 <div class="form-group">
@@ -161,7 +163,8 @@ if (isset($_SESSION["usu_id"])) {
 
             <div class="col-lg-12">
               <button type="button" id="btncerrarticket" class="btn btn-rounded btn-inline btn-success">Cerrar Ticket</button>
-            </div>
+            </div>';}
+            ?>
           </div>
         </div>
 
@@ -171,9 +174,9 @@ if (isset($_SESSION["usu_id"])) {
 
     <?php require_once("../MainJs/js.php"); ?>
 
-    <script type="text/javascript" src="detalleTicket-cierre-cliente.js"></script>
+    <script type="text/javascript" src="detalleTicket-cierre-cliente-general.js"></script>
     <script type="text/javascript" src="../MainNav/nav.js"></script>
-
+    
     <script type="text/javascript" src="../notificacion.js"></script>
 
   </body>
