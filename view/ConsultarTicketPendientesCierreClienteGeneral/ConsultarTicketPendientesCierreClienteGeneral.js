@@ -37,7 +37,7 @@ $(document).ready(function () {
 function ver(tick_id) {
   var dir_proyecto = document.getElementById("dir_proyecto").value;
   window.location.href =
-    dir_proyecto + "view/DetalleTicket-Cierre-Cliente/?ID=" +
+    dir_proyecto + "view/DetalleTicket-Cierre-Cliente-General/?ID=" +
     tick_id;
 }
 

@@ -77,6 +77,7 @@ if (isset($_SESSION["usu_id"])) {
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha Creación</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha Asignación</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha Cierre</th>
+									<th class="d-none d-sm-table-cell" style="width: 10%;">Responsable</th>
 									<th class="text-center" style="width: 5%;"></th>
 								</tr>
 							</thead>

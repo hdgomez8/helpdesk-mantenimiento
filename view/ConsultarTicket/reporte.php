@@ -444,8 +444,7 @@ ob_start();
                     <tbody>
                         <tr>
                             <td style="width: 475px;font-size: 12px;">&nbsp;Recibio trabajo a satisfaccion: SI &nbsp;<span style="border: 1px solid black;<?php echo $satisfaccion == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp; NO &nbsp;<span style="border: 1px solid black;<?php echo $satisfaccion == '0' ? 'background-color: black;' : 'background-color: white;'; ?>">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
-                            <td style="width: 235px;font-size: 12px;">&nbsp;Fecha de Recibido:&nbsp;&nbsp;&nbsp;<?php $fecha_cier_usu_formateada = date("Y-m-d", strtotime($fech_cier_usu));
-                                                                                                                echo $fecha_cier_usu_formateada; ?></td>
+                            <td style="width: 235px;font-size: 12px;">&nbsp;Fecha de Recibido:&nbsp;&nbsp;&nbsp;<?php $fecha_cier_usu_formateada = date("Y-m-d", strtotime($fech_cier_usu));                                                                           echo $fecha_cier_usu_formateada; ?></td>
                         </tr>
                     </tbody>
                 </table>
