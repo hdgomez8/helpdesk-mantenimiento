@@ -521,6 +521,15 @@ switch ($_GET["op"]) {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cierre"]));
             }
 
+            if ($row["usu_asig"] == null) {
+                $sub_array[] = '<span class="label label-pill label-warning">Sin Asignar</span>';
+            } else {
+                $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
+                foreach ($datos1 as $row1) {
+                    $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
+                }
+            }
+
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
             $data[] = $sub_array;
         }
