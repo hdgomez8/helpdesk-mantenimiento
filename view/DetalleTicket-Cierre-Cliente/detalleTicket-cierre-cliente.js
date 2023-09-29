@@ -302,6 +302,7 @@ function listardetalle(tick_id) {
       $('#area').val(data.areas_nom);
       $('#ubicacion').val(data.ubicacion_nom);
       $("#tickd_descrip_diag_mant").summernote("code", data.tick_diag_mant);
+      $('#tecnico').val(data.nombre_soporte);
     }
   );
 }
