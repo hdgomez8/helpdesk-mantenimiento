@@ -104,11 +104,11 @@ if (isset($_SESSION["usu_id"])) {
               </div>
 
               <div class="col-lg-3">
-              <fieldset class="form-group">
-                <label class="form-label semibold" for="tecnico">Técnico</label>
-                <input type="text" class="form-control" id="tecnico" name="tecnico" readonly>
-              </fieldset>
-            </div>
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="tecnico">Técnico</label>
+                  <input type="text" class="form-control" id="tecnico" name="tecnico" readonly>
+                </fieldset>
+              </div>
 
               <div class="col-lg-12">
                 <fieldset class="form-group">
@@ -147,6 +147,10 @@ if (isset($_SESSION["usu_id"])) {
                 </fieldset>
               </div>
 
+
+              <?php
+              if ($_SESSION["rol_id"] != "2") {
+                echo '
               <div class="col-lg-12">
                 <div class="col-lg-4">
                   <div class="form-group">
@@ -198,7 +202,10 @@ if (isset($_SESSION["usu_id"])) {
                 <div class="col-lg-12">
                   <button type="button" class="btn btn-rounded btn-inline btn-success" data-toggle="modal" data-target="#agregarModal">Agregar Repuesto o Accesorio</button>
                 </div>
-              </div>
+              </div>';
+              }
+              ?>
+
 
               <div class="col-lg-12" id="descripcion_actividades">
                 <fieldset class="form-group">
