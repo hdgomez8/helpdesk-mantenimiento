@@ -103,6 +103,13 @@ if (isset($_SESSION["usu_id"])) {
                 </div>
               </div>
 
+              <div class="col-lg-3">
+                <div class="form-group">
+                  <label class="form-label" for="usu_id_tecnico">Tecnico</label>
+                  <select class="select2" id="usu_id_tecnico" name="usu_id_tecnico" data-placeholder="Seleccionar" required>
+                  </select>
+                </div>
+              </div>
             </div>
 
 
