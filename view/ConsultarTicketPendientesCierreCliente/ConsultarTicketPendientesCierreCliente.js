@@ -22,6 +22,13 @@ $(document).ready(function () {
       datosAdicionales
     );
   } else if (rol_id == 3) {
+    listardatatablehelper(
+      "#ticket_data",
+      "op=listar_x_usu_est_pend_cierr_cliente",
+      0,
+      "desc",
+      datosAdicionales
+    );
   } else if (rol_id == 4) {
     listardatatablehelper(
       "#ticket_data",

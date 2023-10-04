@@ -1,4 +1,4 @@
-function init() {}
+function init() { }
 
 $(document).ready(function () {
   var tick_id = getUrlParameter("ID");
@@ -214,53 +214,58 @@ $(document).on("click", "#btncerrarticket", function () {
   var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
   var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
 
-  swal(
-    {
-      title: "HelpDesk",
-      text: "Esta seguro de Cerrar el Ticket?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-warning",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-    },
-    function (isConfirm) {
-      if (isConfirm) {
-        var tick_id = getUrlParameter("ID");
+  if (!tickd_descrip_act_rep_efec.trim()) {
+    // El campo está vacío, muestra un mensaje de error
+    swal("Error", "Por favor, ingrese una descripción de la actividad", "error");
+  } else {
+    swal(
+      {
+        title: "HelpDesk",
+        text: "Esta seguro de Cerrar el Ticket?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+      },
+      function (isConfirm) {
+        if (isConfirm) {
+          var tick_id = getUrlParameter("ID");
 
-        /* TODO: Actualizamos el ticket  */
-        $.post(
-          "../../controller/ticket.php?op=update_x_tecnico_con_materiales",
-          {
-            tick_id: tick_id,
-            tickd_descrip_diag_mant: tickd_descrip_diag_mant,
-            tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec, 
+          /* TODO: Actualizamos el ticket  */
+          $.post(
+            "../../controller/ticket.php?op=update_x_tecnico_con_materiales",
+            {
+              tick_id: tick_id,
+              tickd_descrip_diag_mant: tickd_descrip_diag_mant,
+              tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec,
+            },
+            function (data) { }
+          );
+
+          /* TODO:Llamamos a funcion listardetalle */
+          listardetalle(tick_id);
+
+          /* TODO: Alerta de confirmacion */
+          swal({
+            title: "Ticket Cerrado!",
+            text: "Ticket Cerrado correctamente.",
+            type: "success",
+            confirmButtonClass: "btn-success",
           },
-          function (data) {}
-        );
-
-        /* TODO:Llamamos a funcion listardetalle */
-        listardetalle(tick_id);
-
-        /* TODO: Alerta de confirmacion */
-        swal({
-          title: "Ticket Cerrado!",
-          text: "Ticket Cerrado correctamente.",
-          type: "success",
-          confirmButtonClass: "btn-success",
-        },
-        function (result) {
-          console.log(result); // Imprimir el resultado en la consola
-          if (result) {
-            var dir_proyecto = document.getElementById("dir_proyecto").value;
-            window.location.href =
-            dir_proyecto + "view/ConsultarTicketAsignadoConMateriales/";
-          }
-        });
+            function (result) {
+              console.log(result); // Imprimir el resultado en la consola
+              if (result) {
+                var dir_proyecto = document.getElementById("dir_proyecto").value;
+                window.location.href =
+                  dir_proyecto + "view/ConsultarTicketAsignadoConMateriales/";
+              }
+            });
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 init();

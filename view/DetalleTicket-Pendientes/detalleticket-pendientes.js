@@ -265,7 +265,7 @@ $(document).on("click", "#btncerrarticket", function () {
   var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
   var opcionMateriales = $("input[name='opcionMateriales']:checked").val();
 
-  if (!tickd_descrip_diag_mant.trim() || !tickd_descrip_act_rep_efec.trim()|| opcionMateriales === "" || opcionMateriales === null || opcionMateriales === undefined) {
+  if (!tickd_descrip_diag_mant.trim() || !tickd_descrip_act_rep_efec.trim() || opcionMateriales === "" || opcionMateriales === null || opcionMateriales === undefined) {
     // El campo está vacío, muestra un mensaje de error
     swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento y una descripcion de actividad antes de Cerrar la solicitud.", "error");
   } else {
@@ -332,105 +332,69 @@ $(document).on("click", "#btncerrarticket", function () {
 
 });
 
-$(document).on("click", "#btnsolicitarmateriales2", function () {
-  var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
-
-  swal(
-    {
-      title: "Solicitar los materiales",
-      text: "Esta seguro de solicitar los materiales?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-warning",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
-    },
-    function (isConfirm) {
-      if (isConfirm) {
-        var tick_id = getUrlParameter("ID");
-
-        var formData = new FormData();
-        formData.append("tickd_descrip_diag_mant", tickd_descrip_diag_mant);
-        formData.append("tick_id", tick_id);
-        formData.append("materiales", JSON.stringify(materiales));
-
-        console.log(formData);
-        /* TODO: Actualizamos el ticket  */
-        $.ajax({
-          url: "../../controller/ticket.php?op=update_x_tecnico_materiales",
-          type: "POST",
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-            // Ejemplo de uso
-            showAlert(tickId);
-          },
-        });
-
-        /* TODO: Alerta de confirmacion */
-        swal(
-          {
-            title: "Materiales Solicitados",
-            text: "Materiales Solicitados Exitosamente.!",
-            type: "success",
-            confirmButtonClass: "btn-success",
-          },
-          function (result) {
-            console.log(result); // Imprimir el resultado en la consola
-            if (result) {
-              var dir_proyecto = document.getElementById("dir_proyecto").value;
-              window.location.href =
-              dir_proyecto + "view/ConsultarTicketPendientes/";
-            }
-          }
-        );
-      }
-    }
-  );
-});
-
 $(document).on("click", "#btnsolicitarmateriales", function () {
   var tick_id = getUrlParameter("ID");
   var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
 
-  var formData = new FormData();
-  formData.append("tick_id", tick_id);
-  formData.append("tickd_descrip_diag_mant", tickd_descrip_diag_mant);
-  formData.append("materiales", JSON.stringify(materiales));
+  if (!tickd_descrip_diag_mant.trim()) {
+    // El campo está vacío, muestra un mensaje de error
+    swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento", "error");
+  } else {
 
-  // echo "<script>console.log('$resultado');</script>";
-  /* TODO:Insertar detalle */
-  $.ajax({
-    url: "../../controller/ticket.php?op=update_x_tecnico_materiales",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-    success: function (data) {
-      console.log(data);
-      /* TODO: Limpiar inputfile */
-      $("#fileElem").val("");
+    swal(
+      {
+        title: "HelpDesk",
+        text: "Esta seguro de solicitar los materiales",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+      },
+      function (isConfirm) {
+        if (isConfirm) {
+          var formData = new FormData();
+          formData.append("tick_id", tick_id);
+          formData.append("tickd_descrip_diag_mant", tickd_descrip_diag_mant);
+          formData.append("materiales", JSON.stringify(materiales));
 
-      swal(
-        {
-          title: "Materiales Solicitados",
-          text: "Materiales Solicitados Exitosamente.!",
-          type: "success",
-          confirmButtonClass: "btn-success",
-        },
-        function (result) {
-          console.log(result); // Imprimir el resultado en la consola
-          if (result) {
-            var dir_proyecto = document.getElementById("dir_proyecto").value;
-            window.location.href =
-            dir_proyecto + "view/ConsultarTicketPendientes/";
-          }
+          // echo "<script>console.log('$resultado');</script>";
+          /* TODO:Insertar detalle */
+          $.ajax({
+            url: "../../controller/ticket.php?op=update_x_tecnico_materiales",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+              console.log(data);
+              /* TODO: Limpiar inputfile */
+              $("#fileElem").val("");
+
+              swal(
+                {
+                  title: "Materiales Solicitados",
+                  text: "Materiales Solicitados Exitosamente.!",
+                  type: "success",
+                  confirmButtonClass: "btn-success",
+                },
+                function (result) {
+                  console.log(result); // Imprimir el resultado en la consola
+                  if (result) {
+                    var dir_proyecto = document.getElementById("dir_proyecto").value;
+                    window.location.href =
+                      dir_proyecto + "view/ConsultarTicketPendientes/";
+                  }
+                }
+              );
+            },
+          });
+
         }
-      );
-    },
-  });
+      }
+    );
+  }
 });
 
 $(document).on("click", "#btnsolicitarproveedor", function () {
@@ -478,7 +442,7 @@ $(document).on("click", "#btnsolicitarproveedor", function () {
               if (result) {
                 var dir_proyecto = document.getElementById("dir_proyecto").value;
                 window.location.href =
-                dir_proyecto + "view/ConsultarTicketPendientes/";
+                  dir_proyecto + "view/ConsultarTicketPendientes/";
               }
             }
           );
@@ -517,11 +481,16 @@ function ocultarCamposRequiereMateriales() {
   document.getElementById("cerrar_ticket").style.display = "none";
   document.getElementById("solicitar_materiales").style.display = "block";
   // Borrar el valor del campo
-  document.getElementById("opcionProveedor").value = "";
+  // document.getElementById("opcionProveedor").value = "";
+  document.getElementById("opcionProveedorSi").value = "";
+  document.getElementById("opcionProveedorNo").value = "";
+  document.getElementById("opcionProveedorSi").checked = false;
+  document.getElementById("opcionProveedorNo").checked = false;
   // También puedes deseleccionar los radios si es necesario
-  document.getElementById("opcionProveedor").checked = false;
+  // document.getElementById("opcionProveedor").checked = false;
   document.getElementById("solicitar_proveedor").style.display = "none";
   document.getElementById("Proveedor").style.display = "none";
+  document.getElementById("repuestos_accesorios").style.display = "block";
 }
 
 function mostrarCamposRequiereMateriales() {
@@ -531,6 +500,8 @@ function mostrarCamposRequiereMateriales() {
   document.getElementById("solicitar_materiales").style.display = "none";
   document.getElementById("solicitar_proveedor").style.display = "none";
   document.getElementById("Proveedor").style.display = "block";
+  document.getElementById("repuestos_accesorios").style.display = "none";
+
 }
 
 function ocultarCamposRequiereProveedor() {
@@ -549,6 +520,7 @@ function mostrarCamposRequiereProveedor() {
   document.getElementById("diagnostico_mantenimiento").style.display = "block";
   document.getElementById("descripcion_actividades").style.display = "block";
   document.getElementById("repuestos_accesorios").style.display = "block";
+  document.getElementById("repuestos_accesorios").style.display = "none";
 }
 
 init();
