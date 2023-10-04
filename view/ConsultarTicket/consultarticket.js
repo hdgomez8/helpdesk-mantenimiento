@@ -26,7 +26,7 @@ $(document).ready(function () {
   }else if(rol_id==3){
     listardatatablehelper(
       "#ticket_data",
-      "op=listar_x_responsable",
+      "op=listar_x_responsable_tecnico_consultar",
       0,
       "desc",
       datosAdicionales = { "usu_asig": usu_id }
