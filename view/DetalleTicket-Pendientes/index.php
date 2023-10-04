@@ -171,10 +171,10 @@ if (isset($_SESSION["usu_id"])) {
                     <label class="form-label">¿Requiere Proveedor?</label>
                     <div class="radio-group">
                       <label>
-                        <input type="radio" name="opcionProveedor" id="opcionProveedor" value="si" onclick="ocultarCamposRequiereProveedor()"> Sí
+                        <input type="radio" name="opcionProveedor" id="opcionProveedorSi" value="si" onclick="ocultarCamposRequiereProveedor()"> Sí
                       </label>
                       <label>
-                        <input type="radio" name="opcionProveedor" id="opcionProveedor" value="no" onclick="mostrarCamposRequiereProveedor()"> No
+                        <input type="radio" name="opcionProveedor" id="opcionProveedorNo" value="no" onclick="mostrarCamposRequiereProveedor()"> No
                       </label>
                     </div>
                   </div>
