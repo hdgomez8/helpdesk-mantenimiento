@@ -3,7 +3,7 @@
         <div class="col-xl-12">
             <div class="row">
                 <div class="col-sm-2">
-                    <a href="..\ConsultarTicket\">
+                    <a href="..\ConsultarTicketPendientesClientes\">
                         <article class="statistic-box custom-orange">
                             <div>
                                 <div class="number" id="lbltotalabierto"></div>
