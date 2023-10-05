@@ -174,7 +174,7 @@ if ($_SESSION["rol_id"] == 1) {
             <li class="blue-dirty">
                 <a href="..\NuevoTicket\">
                     <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="lbl">Nueva solicitud</span>
+                    <span class="lbl">Nueva solicitud de servicio</span>
                 </a>
             </li>
 
@@ -195,7 +195,7 @@ if ($_SESSION["rol_id"] == 1) {
             <li class="blue-dirty">
                 <a href="..\ConsultarTicketPendientesCierreCliente\">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
-                    <span class="lbl">Solicitudes Pendientes Por Cierre</span>
+                    <span class="lbl">Solicitudes Pendientes Para Visto Bueno</span>
                 </a>
             </li>
 

@@ -91,6 +91,47 @@ class Ticket extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
+        /* TODO: Listar ticket segun id de usuario */
+        public function listar_ticket_x_usu_cliente($usu_id)
+        {
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT 
+                    tm_ticket.tick_id,
+                    tm_ticket.usu_id,
+                    tm_ticket.tick_titulo,
+                    tm_ticket.tick_descrip,
+                    tm_ticket.tick_estado,
+                    tm_ticket.fech_crea,
+                    tm_ticket.fech_cierre,
+                    tm_ticket.fech_cier_tecn,
+                    tm_ticket.fech_cier_usu,
+                    tm_ticket.usu_asig,
+                    tm_ticket.fech_asig,
+                    tm_ticket.fech_sol_mater,
+                    tm_ticket.fech_sol_proveedor,
+                    tm_ticket.fech_asig_con_mater,
+                    tm_ticket.fech_env_compras,
+                    tm_usuario.usu_nom,
+                    tm_usuario.usu_ape,
+                    tm_usuario.usu_correo
+                    FROM 
+                    tm_ticket
+                    INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                    WHERE
+                    tm_ticket.est = 1
+                    AND tm_ticket.usu_id=? and (tick_estado = 'cliente' 
+                    or tick_estado = 'Asignado' 
+                    or tick_estado = 'Pendiente Materiales' 
+                    or tick_estado = 'Asignado Con Materiales'
+                    or tick_estado = 'En Compras'
+                    or tick_estado = 'Pendiente Proveedor')";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        }
+
     /* TODO: Listar ticket segun id de usuario */
     public function listar_x_usu_est_pend_cierr_cliente($usu_id)
     {
