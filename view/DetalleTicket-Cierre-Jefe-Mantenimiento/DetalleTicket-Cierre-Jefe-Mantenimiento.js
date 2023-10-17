@@ -143,44 +143,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
   }
 };
 
-$(document).on("click", "#btnenviar", function () {
-  var tick_id = getUrlParameter("ID");
-  var usu_id = $("#user_idx").val();
-  var tickd_descrip = $("#tickd_descrip").val();
-
-  /* TODO:Validamos si el summernote esta vacio antes de guardar */
-  if ($("#tickd_descrip").summernote("isEmpty")) {
-    swal("Advertencia!", "Falta Descripción", "warning");
-  } else {
-    var formData = new FormData();
-    formData.append("tick_id", tick_id);
-    formData.append("usu_id", usu_id);
-    formData.append("tickd_descrip", tickd_descrip);
-    var totalfiles = $("#fileElem").val().length;
-    /* TODO:Agregamos los documentos adjuntos en caso hubiera */
-    for (var i = 0; i < totalfiles; i++) {
-      formData.append("files[]", $("#fileElem")[0].files[i]);
-    }
-
-    /* TODO:Insertar detalle */
-    $.ajax({
-      url: "../../controller/ticket.php?op=insertdetalle",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function (data) {
-        console.log(data);
-        listardetalle(tick_id);
-        /* TODO: Limpiar inputfile */
-        $("#fileElem").val("");
-        $("#tickd_descrip").summernote("reset");
-        swal("Correcto!", "Registrado Correctamente", "success");
-      },
-    });
-  }
-});
-
 $(document).on("click", "#btncerrarticket", function () {
   /* TODO: Preguntamos antes de cerrar el ticket */
   swal(
@@ -212,16 +174,6 @@ $(document).on("click", "#btncerrarticket", function () {
           function (data) {}
         );
 
-        /* TODO:Alerta de ticket cerrado via Whaspp */
-        $.post(
-          "../../controller/whatsapp.php?op=w_ticket_cerrado",
-          { tick_id: tick_id },
-          function (data) {}
-        );
-
-        /* TODO:Llamamos a funcion listardetalle */
-        listardetalle(tick_id);
-
         /* TODO: Alerta de confirmacion */
         swal({
           title: "HelpDesk!",
@@ -230,7 +182,6 @@ $(document).on("click", "#btncerrarticket", function () {
           confirmButtonClass: "btn-success",
         },
         function (result) {
-          console.log(result); // Imprimir el resultado en la consola
           if (result) {
             var dir_proyecto = document.getElementById("dir_proyecto").value;
             window.location.href =
