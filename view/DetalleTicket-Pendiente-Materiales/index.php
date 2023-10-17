@@ -55,7 +55,34 @@ if (isset($_SESSION["usu_id"])) {
               </fieldset>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-12">
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="usuario">Usuario</label>
+                  <input type="text" class="form-control" id="usuario" name="usuario" readonly>
+                </fieldset>
+              </div>
+              <div class="col-lg-2">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="empresa">Empresa</label>
+                  <input type="text" class="form-control" id="empresa" name="empresa" readonly>
+                </fieldset>
+              </div>
+              <div class="col-lg-3">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="area">Área</label>
+                  <input type="text" class="form-control" id="area" name="area" readonly>
+                </fieldset>
+              </div>
+              <div class="col-lg-3">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="ubicacion">Ubicación</label>
+                  <input type="text" class="form-control" id="ubicacion" name="ubicacion" readonly>
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tick_tipo_mantenimiento">Tipo De Mantenimniento</label>
                 <input type="text" class="form-control" id="tick_tipo_mantenimiento" name="tick_tipo_mantenimiento" readonly>
@@ -69,10 +96,17 @@ if (isset($_SESSION["usu_id"])) {
               </fieldset>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-2">
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tick_prioridad">Prioridad</label>
                 <input type="text" class="form-control" id="tick_prioridad" name="tick_prioridad" readonly>
+              </fieldset>
+            </div>
+
+            <div class="col-lg-3">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="tecnico">Técnico</label>
+                <input type="text" class="form-control" id="tecnico" name="tecnico" readonly>
               </fieldset>
             </div>
 
@@ -135,12 +169,18 @@ if (isset($_SESSION["usu_id"])) {
 
             <div>
               <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="orden_compra">Orden De Compra</label>
+                  <input type="text" class="form-control" id="orden_compra" name="orden_compra" readonly>
+                </fieldset>
+              </div>
+            </div>
+
+            <div>
+              <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-label semibold">¿Orden de Compra o Requision?</label>
+                  <label class="form-label semibold">¿Requision?</label>
                   <div class="radio-group">
-                    <label>
-                      <input type="radio" name="req_orden" id="req_orden" value="ordenCompra" onclick="mostrarCampoOrdenCompra()"> Orden de Compra
-                    </label>
                     <label>
                       <input type="radio" name="req_orden" id="req_orden" value="requisicion" onclick="mostrarCampoRequisicion()"> Requisicion
                     </label>
@@ -177,7 +217,7 @@ if (isset($_SESSION["usu_id"])) {
 
       <script type="text/javascript" src="DetalleTicket-Pendiente-Materiales.js"></script>
       <script type="text/javascript" src="../MainNav/nav.js"></script>
-      
+
       <script type="text/javascript" src="../notificacion.js"></script>
 
   </body>

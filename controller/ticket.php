@@ -1109,6 +1109,7 @@ switch ($_GET["op"]) {
                 $output["ubicacion_nom"] = $row["ubicacion_nom"];
                 $output["emp_nom"] = $row["emp_nom"];
                 $output["nombre_soporte"] = $row["nombre_soporte"];
+                $output["tick_num_ord_compra"] = $row["tick_num_ord_compra"];
             }
             echo json_encode($output);
         }
