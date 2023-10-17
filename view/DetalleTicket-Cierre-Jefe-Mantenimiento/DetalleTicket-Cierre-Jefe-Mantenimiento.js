@@ -214,6 +214,7 @@ function listardetalle(tick_id) {
       $("#tickd_descrip_diag_mant").summernote("code", data.tick_diag_mant);
       $("#tickd_descrip_act_rep_efec").summernote("code", data.tick_descrip_act_rep_efec);
       $('#tecnico').val(data.nombre_soporte);
+      $('#orden_compra').val(data.tick_num_ord_compra);
     }
   );
 }

@@ -267,6 +267,7 @@ function listardetalle(tick_id) {
       $("#tick_prioridad").val(data.prio_nom);
       $("#tickd_descripusu").summernote("code", data.tick_descrip);
       $("#tickd_descrip_diag_mant").summernote("code", data.tick_diag_mant);
+      $('#orden_compra').val(data.tick_num_ord_compra);
     }
   );
 }
