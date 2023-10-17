@@ -135,12 +135,18 @@ if (isset($_SESSION["usu_id"])) {
 
             <div>
               <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="orden_compra">Orden De Compra</label>
+                  <input type="text" class="form-control" id="orden_compra" name="orden_compra" readonly>
+                </fieldset>
+              </div>
+            </div>
+
+            <div>
+              <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-label semibold">¿Orden de Compra o Requision?</label>
+                  <label class="form-label semibold">¿Requision?</label>
                   <div class="radio-group">
-                    <label>
-                      <input type="radio" name="req_orden" id="req_orden" value="ordenCompra" onclick="mostrarCampoOrdenCompra()"> Orden de Compra
-                    </label>
                     <label>
                       <input type="radio" name="req_orden" id="req_orden" value="requisicion" onclick="mostrarCampoRequisicion()"> Requisicion
                     </label>
@@ -177,7 +183,7 @@ if (isset($_SESSION["usu_id"])) {
 
       <script type="text/javascript" src="DetalleTicket-Pendiente-Materiales.js"></script>
       <script type="text/javascript" src="../MainNav/nav.js"></script>
-      
+
       <script type="text/javascript" src="../notificacion.js"></script>
 
   </body>
