@@ -627,7 +627,8 @@ class Ticket extends Conectar
                     tm_empresa.emp_nom,
                     tm_ubicacion.ubicacion_nom,
                     tm_usuario.usu_correo,
-                    (select tm_usuario.usu_nom from tm_usuario where tm_usuario.usu_id = tm_ticket.usu_asig) as nombre_soporte
+                    (select tm_usuario.usu_nom from tm_usuario where tm_usuario.usu_id = tm_ticket.usu_asig) as nombre_soporte,
+                    tm_ticket.tick_num_ord_compra
                     FROM 
                     tm_ticket
                     INNER join tm_tipo_mantenimiento on tm_tipo_mantenimiento.tip_man_id = tm_ticket.tip_mant_id
