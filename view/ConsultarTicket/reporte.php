@@ -22,6 +22,7 @@ tip_mant_id,
 areas_nom,
 satisfaccion,
 u1.Firma,
+u2.Firma AS Firma_solicitante,
 tick_num_requisicion,
 u1.usu_ape As usu_ape
 from tm_ticket 
@@ -52,6 +53,7 @@ $tick_diag_mant = $result['tick_diag_mant'];
 $tick_descrip_act_rep_efec = $result['tick_descrip_act_rep_efec'];
 $tip_mant_id = $result['tip_mant_id'];
 $firma_tecnico = $result['Firma'];
+$firma_solicitante = $result['Firma_solicitante'];
 $correo_creador = $result['correo_creador'];
 $areas_nom = $result['areas_nom'];
 
@@ -469,7 +471,7 @@ ob_start();
 <table width="710px">
     <tbody>
         <tr style="height: 50;">
-            <td style="width: 234px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helpdesk/public/img/firmas/ING-PAULA.jpg" alt="" style="width: 120px; height: auto;"></td>
+            <td style="width: 234px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_solicitante; ?>" alt="" style="width: 120px; height: auto;"></td>
             <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helpdesk/public/img/firmas/Jefe-Milton.jpg" alt="" style="width: 120px; height: auto;"></td>
             <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_tecnico; ?>" alt="" style="width: 120px; height: auto;"></td>
         </tr>
