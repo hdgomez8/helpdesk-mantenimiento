@@ -1,5 +1,6 @@
 <?php
 require_once("../../config/conexion.php");
+header('Content-Type: text/html; charset=UTF-8');
 $dir_proyecto = $settings['DIRECCION_PROYECTO'];
 $ticket_id = $_GET['tick_id'];
 
