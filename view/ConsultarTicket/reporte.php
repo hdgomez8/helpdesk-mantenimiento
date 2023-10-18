@@ -157,10 +157,10 @@ ob_start();
                             <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;"><strong>FECHA DE EMISIÓN:<strong><br />31.01.17</td>
                         </tr>
                         <tr style="height: 20px;">
-                            <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;"><strong>FECHA DE ACTUALIZACIÓN:<strong><br />13.04.22</td>
+                            <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;"><strong>FECHA DE ACTUALIZACIÓN:<strong><br />13.10.23</td>
                         </tr>
                         <tr style="height: 20px;">
-                            <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;"><strong>VERSION: 006<strong></td>
+                            <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;"><strong>VERSION: 007<strong></td>
                             </tr>
                     </tbody>
                 </table>
