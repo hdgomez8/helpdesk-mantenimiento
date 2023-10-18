@@ -459,10 +459,10 @@ ob_start();
         </tr>
     </tbody>
 </table>
-<table style="height: 40px;" width="720px">
+<table style="height: 30px;" width="720px">
     <tbody>
         <tr>
-            <td style="width: 720px;height: 40px;border: 1px solid black;line-height: 1;"><span style="font-size: 12px;"></span></td>
+            <td style="width: 720px;height: 30px;border: 1px solid black;line-height: 1;"><span style="font-size: 12px;"></span></td>
         </tr>
     </tbody>
 </table>
