@@ -144,31 +144,31 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_sol_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
             }
 
             if ($row["fech_env_compras"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
             }
 
             if ($row["fech_sol_proveedor"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
             }
 
             if ($row["fech_asig_con_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
             }
@@ -192,7 +192,7 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
@@ -253,31 +253,31 @@ switch ($_GET["op"]) {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
     
                 if ($row["fech_asig"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
                 } else {
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
                 }
     
                 if ($row["fech_sol_mater"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
                 } else {
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
                 }
     
                 if ($row["fech_env_compras"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
                 } else {
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
                 }
     
                 if ($row["fech_sol_proveedor"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
                 } else {
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
                 }
     
                 if ($row["fech_asig_con_mater"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
                 } else {
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
                 }
@@ -301,7 +301,7 @@ switch ($_GET["op"]) {
                 }
     
                 if ($row["usu_asig"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
                 } else {
                     $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                     foreach ($datos1 as $row1) {
@@ -341,13 +341,13 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_cier_tecn"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
             }
@@ -375,13 +375,13 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_cier_tecn"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
             }
@@ -409,13 +409,13 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_cier_tecn"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
             }
@@ -445,13 +445,13 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_cier_tecn"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
             }
@@ -481,13 +481,13 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_cier_tecn"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
             }
@@ -538,31 +538,31 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_sol_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
             }
 
             if ($row["fech_env_compras"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
             }
 
             if ($row["fech_sol_proveedor"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
             }
 
             if ($row["fech_asig_con_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
             }
@@ -586,7 +586,7 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">Sin Asignar</span></a>';
+                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/A</span></a>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
@@ -642,31 +642,31 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_sol_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
             }
 
             if ($row["fech_env_compras"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
             }
 
             if ($row["fech_sol_proveedor"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
             }
 
             if ($row["fech_asig_con_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
             }
@@ -690,7 +690,7 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">Sin Asignar</span></a>';
+                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/A</span></a>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
@@ -724,7 +724,7 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
@@ -736,7 +736,7 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-warning">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-warning">N/A</span>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
@@ -769,7 +769,7 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
@@ -804,7 +804,7 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
@@ -839,7 +839,7 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
@@ -871,7 +871,7 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
@@ -925,31 +925,31 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
             if ($row["fech_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
             }
 
             if ($row["fech_sol_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
             }
 
             if ($row["fech_env_compras"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
             }
 
             if ($row["fech_sol_proveedor"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
             }
 
             if ($row["fech_asig_con_mater"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
             } else {
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
             }
@@ -973,7 +973,7 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">Sin Asignar</span></a>';
+                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/A</span></a>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
