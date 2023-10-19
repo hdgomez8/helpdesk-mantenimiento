@@ -265,9 +265,14 @@ function listardetalle(tick_id) {
       $("#tick_tipo_mantenimiento").val(data.tip_man_nom);
       $("#tick_sistemas").val(data.sis_nom);
       $("#tick_prioridad").val(data.prio_nom);
+      $('#usuario').val(data.usu_correo);
+      $('#empresa').val(data.emp_nom);
+      $('#area').val(data.areas_nom);
+      $('#ubicacion').val(data.ubicacion_nom);
       $("#tickd_descripusu").summernote("code", data.tick_descrip);
       $("#tickd_descrip_diag_mant").summernote("code", data.tick_diag_mant);
       $('#orden_compra').val(data.tick_num_ord_compra);
+      $('#tecnico').val(data.nombre_soporte);
     }
   );
 }
