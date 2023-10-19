@@ -239,9 +239,23 @@ if ($_SESSION["rol_id"] == 1) {
                     <span class="lbl">Consultar Solicitud</span>
                 </a>
             </li>
+
+            <?php
+            if ($_SESSION["usu_id"] == 553 || $_SESSION["usu_id"] == 662) {
+            ?>
+                <!-- Tu contenido para el segundo if -->
+                <li class="blue-dirty">
+                    <a href="..\ConsultarTicketAuditoria\">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <span class="lbl">Auditar Solicitudes</span>
+                    </a>
+                </li>
+            <?php
+            }
+            ?>
+
         </ul>
     </nav>
 <?php
 }
 ?>
-
