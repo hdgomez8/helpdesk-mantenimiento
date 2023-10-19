@@ -219,115 +219,115 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
 
-        case "listar_x_usu_cliente":
-            $datos = $ticket->listar_ticket_x_usu_cliente($_POST["usu_id"]);
-            $data = array();
-            foreach ($datos as $row) {
-                $sub_array = array();
-                $sub_array[] = $row["tick_id"];
-                $sub_array[] = $row["usu_correo"];
-                $sub_array[] = $row["tick_titulo"];
-    
-                if ($row["tick_estado"] == "Cliente") {
-                    $sub_array[] = '<span class="label label-pill label-default">Cliente</span>';
-                } else if ($row["tick_estado"] == "Asignado") {
-                    $sub_array[] = '<span class="label label-pill label-success">Asignado</span>';
-                } else if ($row["tick_estado"] == "Pendiente Por Materiales") {
-                    $sub_array[] = '<span class="label label-pill label-success">Pendiente Por Materiales</span>';
-                } else if ($row["tick_estado"] == "Cierre Técnico") {
-                    $sub_array[] = '<span class="label label-pill label-warning">Cierre Técnico</span>';
-                } else if ($row["tick_estado"] == "Pendiente Materiales") {
-                    $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Materiales</span>';
-                } else if ($row["tick_estado"] == "En Compras") {
-                    $sub_array[] = '<span class="label label-pill label-success">En<br/>Compras</span>';
-                } else if ($row["tick_estado"] == "Pendiente Proveedor") {
-                    $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Proveedor</span>';
-                } else if ($row["tick_estado"] == "Cierre Cliente") {
-                    $sub_array[] = '<span class="label label-pill label-warning">Cierre Cliente</span>';
-                } else if ($row["tick_estado"] == "Asignado Con Materiales") {
-                    $sub_array[] = '<span class="label label-pill label-success">Asignado Con<br/>Materiales</span>';
-                } else {
-                    $sub_array[] = '<span class="label label-pill label-warning">Cerrado</span>';
-                }
-    
-                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
-    
-                if ($row["fech_asig"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
-                }
-    
-                if ($row["fech_sol_mater"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
-                }
-    
-                if ($row["fech_env_compras"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
-                }
-    
-                if ($row["fech_sol_proveedor"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
-                }
-    
-                if ($row["fech_asig_con_mater"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
-                }
-    
-                if ($row["fech_cier_tecn"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
-                }
-    
-                if ($row["fech_cier_usu"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_usu"]));
-                }
-    
-                if ($row["fech_cierre"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
-                } else {
-                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cierre"]));
-                }
-    
-                if ($row["usu_asig"] == null) {
-                    $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
-                } else {
-                    $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
-                    foreach ($datos1 as $row1) {
-                        $sub_array[] = '<span class="label label-pill label-warning">' . $row1["usu_nom"] . '</span>';
-                    }
-                }
-    
-                $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye" aria-hidden="true"></i></button>';
-                if (isset($_SESSION["rol_id"]) == "4") {
-                    $sub_array[] = '';
-                } else {
-                    $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
-                }
-    
-                $data[] = $sub_array;
+    case "listar_x_usu_cliente":
+        $datos = $ticket->listar_ticket_x_usu_cliente($_POST["usu_id"]);
+        $data = array();
+        foreach ($datos as $row) {
+            $sub_array = array();
+            $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
+            $sub_array[] = $row["tick_titulo"];
+
+            if ($row["tick_estado"] == "Cliente") {
+                $sub_array[] = '<span class="label label-pill label-default">Cliente</span>';
+            } else if ($row["tick_estado"] == "Asignado") {
+                $sub_array[] = '<span class="label label-pill label-success">Asignado</span>';
+            } else if ($row["tick_estado"] == "Pendiente Por Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente Por Materiales</span>';
+            } else if ($row["tick_estado"] == "Cierre Técnico") {
+                $sub_array[] = '<span class="label label-pill label-warning">Cierre Técnico</span>';
+            } else if ($row["tick_estado"] == "Pendiente Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Materiales</span>';
+            } else if ($row["tick_estado"] == "En Compras") {
+                $sub_array[] = '<span class="label label-pill label-success">En<br/>Compras</span>';
+            } else if ($row["tick_estado"] == "Pendiente Proveedor") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Proveedor</span>';
+            } else if ($row["tick_estado"] == "Cierre Cliente") {
+                $sub_array[] = '<span class="label label-pill label-warning">Cierre Cliente</span>';
+            } else if ($row["tick_estado"] == "Asignado Con Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Asignado Con<br/>Materiales</span>';
+            } else {
+                $sub_array[] = '<span class="label label-pill label-warning">Cerrado</span>';
             }
-    
-            $results = array(
-                "sEcho" => 1,
-                "iTotalRecords" => count($data),
-                "iTotalDisplayRecords" => count($data),
-                "aaData" => $data,
-            );
-            echo json_encode($results);
-            break;
-    
+
+            $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
+
+            if ($row["fech_asig"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+            }
+
+            if ($row["fech_sol_mater"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
+            }
+
+            if ($row["fech_env_compras"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
+            }
+
+            if ($row["fech_sol_proveedor"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
+            }
+
+            if ($row["fech_asig_con_mater"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
+            }
+
+            if ($row["fech_cier_tecn"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
+            }
+
+            if ($row["fech_cier_usu"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_usu"]));
+            }
+
+            if ($row["fech_cierre"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cierre"]));
+            }
+
+            if ($row["usu_asig"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
+                foreach ($datos1 as $row1) {
+                    $sub_array[] = '<span class="label label-pill label-warning">' . $row1["usu_nom"] . '</span>';
+                }
+            }
+
+            $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye" aria-hidden="true"></i></button>';
+            if (isset($_SESSION["rol_id"]) == "4") {
+                $sub_array[] = '';
+            } else {
+                $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            }
+
+            $data[] = $sub_array;
+        }
+
+        $results = array(
+            "sEcho" => 1,
+            "iTotalRecords" => count($data),
+            "iTotalDisplayRecords" => count($data),
+            "aaData" => $data,
+        );
+        echo json_encode($results);
+        break;
+
 
         /* TODO: Listado de tickets,formato json para Datatable JS */
     case "listar_x_usu_est_pend_cierr_cliente":
@@ -980,7 +980,6 @@ switch ($_GET["op"]) {
                     $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
                 }
             }
-
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
             $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
             $data[] = $sub_array;
@@ -996,6 +995,116 @@ switch ($_GET["op"]) {
         break;
 
         /* TODO: Listado de tickets,formato json para Datatable JS, filtro avanzado*/
+
+    case "listar_auditoria":
+        $datos = $ticket->listar_ticket_auditoria();
+        $data = array();
+        foreach ($datos as $row) {
+            $sub_array = array();
+            $sub_array[] = $row["tick_id"];
+            $sub_array[] = $row["usu_correo"];
+            $sub_array[] = $row["tick_titulo"];
+
+            if ($row["tick_estado"] == "Cliente") {
+                $sub_array[] = '<span class="label label-pill label-default">Cliente</span>';
+            } else if ($row["tick_estado"] == "Asignado") {
+                $sub_array[] = '<span class="label label-pill label-success">Asignado</span>';
+            } else if ($row["tick_estado"] == "Pendiente Por Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente Por Materiales</span>';
+            } else if ($row["tick_estado"] == "Cierre Técnico") {
+                $sub_array[] = '<span class="label label-pill label-warning">Cierre Técnico</span>';
+            } else if ($row["tick_estado"] == "Pendiente Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Materiales</span>';
+            } else if ($row["tick_estado"] == "En Compras") {
+                $sub_array[] = '<span class="label label-pill label-success">En<br/>Compras</span>';
+            } else if ($row["tick_estado"] == "Pendiente Proveedor") {
+                $sub_array[] = '<span class="label label-pill label-success">Pendiente<br/>Proveedor</span>';
+            } else if ($row["tick_estado"] == "Cierre Cliente") {
+                $sub_array[] = '<span class="label label-pill label-warning">Cierre Cliente</span>';
+            } else if ($row["tick_estado"] == "Asignado Con Materiales") {
+                $sub_array[] = '<span class="label label-pill label-success">Asignado Con<br/>Materiales</span>';
+            } else {
+                $sub_array[] = '<span class="label label-pill label-warning">Cerrado</span>';
+            }
+
+            $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
+
+            if ($row["fech_asig"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+            }
+
+            if ($row["fech_sol_mater"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
+            }
+
+            if ($row["fech_env_compras"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_env_compras"]));
+            }
+
+            if ($row["fech_sol_proveedor"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_proveedor"]));
+            }
+
+            if ($row["fech_asig_con_mater"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig_con_mater"]));
+            }
+
+            if ($row["fech_cier_tecn"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_tecn"]));
+            }
+
+            if ($row["fech_cier_usu"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cier_usu"]));
+            }
+
+            if ($row["fech_cierre"] == null) {
+                $sub_array[] = '<span class="label label-pill label-default">Sin Cerrar</span>';
+            } else {
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_cierre"]));
+            }
+
+            if ($row["usu_asig"] == null) {
+                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/A</span></a>';
+            } else {
+                $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
+                foreach ($datos1 as $row1) {
+                    $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
+                }
+            }
+            $sub_array[] = $row["emp_nom"];
+            $sub_array[] = $row["areas_nom"];
+            $sub_array[] = $row["ubicacion_nom"];
+            $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
+            $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            $data[] = $sub_array;
+        }
+
+        $results = array(
+            "sEcho" => 1,
+            "iTotalRecords" => count($data),
+            "iTotalDisplayRecords" => count($data),
+            "aaData" => $data
+        );
+        echo json_encode($results);
+        break;
+
+        /* TODO: Listado de tickets,formato json para Datatable JS, filtro avanzado*/
+
+
     case "listar_filtro":
         $datos = $ticket->filtrar_ticket();
         $data = array();
@@ -1021,6 +1130,7 @@ switch ($_GET["op"]) {
         break;
 
         /* TODO: Formato HTML para mostrar detalle de ticket con comentarios */
+
     case "listardetalle":
         /* TODO: Listar todo el detalle segun tick_id */
         $datos = $ticket->listar_ticketdetalle_x_ticket($_POST["tick_id"]);
