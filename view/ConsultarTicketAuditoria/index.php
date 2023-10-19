@@ -56,6 +56,9 @@ if (isset($_SESSION["usu_id"])) {
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br>Cierre<br>Usuario</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br>Cierre</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Responsable</th>
+									<th class="d-none d-sm-table-cell" style="width: 10%;">Empresa</th>
+									<th class="d-none d-sm-table-cell" style="width: 10%;">Area</th>
+									<th class="d-none d-sm-table-cell" style="width: 10%;">Ubicación</th>
 									<th class="text-center" style="width: 5%;"></th>
 									<th class="text-center" style="width: 5%;"></th>
 								</tr>
