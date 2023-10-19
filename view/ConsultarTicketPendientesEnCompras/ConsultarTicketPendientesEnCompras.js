@@ -16,7 +16,7 @@ $(document).ready(function () {
 /* TODO: Link para poder ver el detalle de ticket en otra ventana */
 function ver(tick_id) {
   var dir_proyecto = document.getElementById("dir_proyecto").value;
-  window.location.href =(dir_proyecto + "view/DetalleTicket-Pendiente-Materiales/?ID=" + tick_id);
+  window.location.href =(dir_proyecto + "view/DetalleTicket-Pendiente-Materiales-en-compras/?ID=" + tick_id);
 }
 
 init();
