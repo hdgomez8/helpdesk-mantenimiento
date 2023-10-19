@@ -981,7 +981,13 @@ switch ($_GET["op"]) {
                 }
             }
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
-            $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            
+            if ($row["tick_estado"] == "Cerrado") {
+                $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            }else {
+                $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal" disabled> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            }
+            
             $data[] = $sub_array;
         }
 
@@ -1089,7 +1095,11 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["areas_nom"];
             $sub_array[] = $row["ubicacion_nom"];
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
-            $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            if ($row["tick_estado"] == "Cerrado") {
+                $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            }else {
+                $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal" disabled> <i class="fa fa-download" aria-hidden="true"></i></button>';
+            }
             $data[] = $sub_array;
         }
 
