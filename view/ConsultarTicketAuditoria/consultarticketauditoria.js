@@ -15,7 +15,7 @@ $(document).ready(function () {
   if(usu_id==553 || usu_id==662){
     listardatatablehelper(
       "#ticket_data",
-      "op=listar",
+      "op=listar_auditoria",
       0,
       "desc",
       datosAdicionales
