@@ -90,7 +90,7 @@ switch ($_GET["op"]) {
         break;
         /* TODO: Reabrimos el ticket y adicionamos una linea adicional */
     case "update_x_cliente":
-        $ticket->update_ticket_x_cliente($_POST["tick_id"], $_POST["opcionSatisfaccion"]);
+        $ticket->update_ticket_x_cliente($_POST["tick_id"], $_POST["opcionSatisfaccion"], $_POST["tickd_observacion"]);
         break;
     case "reabrir":
         $ticket->reabrir_ticket($_POST["tick_id"]);

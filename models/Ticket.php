@@ -1001,7 +1001,7 @@ class Ticket extends Conectar
     }
 
     /* TODO: actualizar ticket por tecnico */
-    public function update_ticket_x_cliente($tick_id, $opcionSatisfaccion)
+    public function update_ticket_x_cliente($tick_id, $opcionSatisfaccion, $tickd_observacion)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -1009,12 +1009,14 @@ class Ticket extends Conectar
                         set	
                             tick_estado = 'Cierre Cliente',
                             fech_cier_usu = now(),
-                            satisfaccion = ?
+                            satisfaccion = ?,
+                            observacion_satisfaccion = ?
                         where
                             tick_id = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $opcionSatisfaccion);
-        $sql->bindValue(2, $tick_id);
+        $sql->bindValue(2, $tickd_observacion);
+        $sql->bindValue(3, $tick_id);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
