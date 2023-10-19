@@ -95,6 +95,20 @@ $(document).ready(function () {
     ],
   });
 
+  /* TODO: Inicializamos summernotejs */
+  $("#tickd_observacion").summernote({
+    height: 100,
+    lang: "es-ES",
+    toolbar: [
+      ["style", ["bold", "italic", "underline", "clear"]],
+      ["font", ["strikethrough", "superscript", "subscript"]],
+      ["fontsize", ["fontsize"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["height", ["height"]],
+    ],
+  });
+
   $("#tickd_descripusu").summernote("disable");
   $("#tickd_descrip_act_rep_efec").summernote("disable");
   $("#tickd_descrip_diag_mant").summernote("disable");
@@ -170,11 +184,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 $(document).on("click", "#btncerrarticket", function () {
   var opcionSatisfaccion = $("input[name='opcionSatisfaccion']:checked").val();
+  var tickd_observacion = $("#tickd_observacion").val();
 
   // Verificar si el campo está vacío o es nulo/undefined
-  if (opcionSatisfaccion === "" || opcionSatisfaccion === null || opcionSatisfaccion === undefined) {
+  if (tickd_observacion === "" || tickd_observacion === null || tickd_observacion === undefined || opcionSatisfaccion === "" || opcionSatisfaccion === null || opcionSatisfaccion === undefined) {
     // El campo está vacío o es nulo/undefined, muestra una alerta o realiza alguna acción de manejo de errores
-    swal("Error", "¿Recibió Trabajo a Satisfacción? no puede estar vacío.", "error");
+    swal("Error", "¿Recibió Trabajo a Satisfacción? no puede estar vacío. Y debes colocar una observación", "error");
   } else {
     /* TODO: Preguntamos antes de cerrar el ticket */
     swal(
@@ -191,11 +206,14 @@ $(document).on("click", "#btncerrarticket", function () {
       function (isConfirm) {
         if (isConfirm) {
           var tick_id = getUrlParameter("ID");
+
           var opcionSatisfaccion = $("input[name='opcionSatisfaccion']").val();
+          var tickd_observacion = $("#tickd_observacion").val();
+
           /* TODO: Actualizamos el ticket  */
           $.post(
             "../../controller/ticket.php?op=update_x_cliente",
-            { tick_id: tick_id, opcionSatisfaccion: opcionSatisfaccion },
+            { tick_id: tick_id, opcionSatisfaccion: opcionSatisfaccion, tickd_observacion: tickd_observacion },
             function (data) {
               console.log(opcionSatisfaccion);
             }
@@ -220,7 +238,7 @@ $(document).on("click", "#btncerrarticket", function () {
               if (result) {
                 var dir_proyecto = document.getElementById("dir_proyecto").value;
                 window.location.href =
-                dir_proyecto + "view/ConsultarTicketPendientesCierreCliente/";
+                  dir_proyecto + "view/ConsultarTicketPendientesCierreCliente/";
               }
             }
           );
