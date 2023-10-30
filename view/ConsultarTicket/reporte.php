@@ -507,7 +507,7 @@ $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper("letter");
 
-
+// cambio
 $dompdf->render();
 
 $dompdf->stream("archivo_.pdf", array("Attachment" => false));
