@@ -92,10 +92,6 @@ if (isset($_SESSION["usu_id"])) {
 
 		</div>
 
-
-		<!-- Agrega este div para el modal -->
-
-
 		<!-- Contenido -->
 		<?php require_once("modalasignar.php"); ?>
 
