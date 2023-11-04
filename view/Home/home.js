@@ -138,6 +138,13 @@ $(document).ready(function () {
       $("#lbltotalxvistobueno").html(data.TOTAL);
     });
 
+    $.post(
+      "../../controller/ticket.php?op=totalencompras",
+      function (data) {
+        data = JSON.parse(data);
+        $("#lbltotalencompras").html(data.TOTAL);
+      }
+    );
     
     $.post("../../controller/usuario.php?op=totalcerrado",{ usu_id: usu_id }, function (data) {
       data = JSON.parse(data);
