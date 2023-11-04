@@ -26,6 +26,24 @@
                         </article>
                     </a>
                 </div>
+
+                <?php if ($_SESSION["usu_id"] == 522) : ?>
+                    <div class="col-sm-2">
+                        <a href="..\ConsultarTicketPendientesEnCompras\">
+                            <article class="statistic-box green">
+                                <div>
+                                    <div class="number" id="lbltotalencompras"></div>
+                                    <div class="caption">
+                                        <div>En Compras</div>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                <?php endif; ?>
+
+
+
                 <div class="col-sm-2">
                     <a href="..\ConsultarTicket\">
                         <article class="statistic-box red">
