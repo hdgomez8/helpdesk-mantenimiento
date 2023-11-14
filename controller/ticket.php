@@ -880,6 +880,7 @@ switch ($_GET["op"]) {
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_sol_mater"]));
 
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
+            $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
             $data[] = $sub_array;
         }
 
