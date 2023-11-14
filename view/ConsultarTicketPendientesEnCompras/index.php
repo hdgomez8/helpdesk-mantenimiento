@@ -78,6 +78,7 @@ if (isset($_SESSION["usu_id"])) {
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br/>Asignación</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br/>Solicitud<br/>Materiales</th>
 									<th class="text-center" style="width: 5%;"></th>
+									<th class="text-center" style="width: 5%;"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -88,6 +89,23 @@ if (isset($_SESSION["usu_id"])) {
 
 				</div>
 
+				<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-scrollable modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="pdfModalLabel">PDF Preview</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<iframe id="pdfIframe" src="" width="100%" height="500"></iframe>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- Contenido -->
@@ -101,6 +119,16 @@ if (isset($_SESSION["usu_id"])) {
 
 		<script type="text/javascript" src="../notificacion.js"></script>
 
+		
+		<script>
+			$(document).on("click", "#btnMostrarReporte", function() {
+				var ticketId = $(this).data("ticket-id");
+				var iframeSrc = "../ConsultarTicket/reporte.php?tick_id=" + ticketId;
+				$("#pdfIframe").attr("src", iframeSrc);
+				$("#pdfModalLabel").text("PDF Preview - Ticket ID: " + ticketId);
+			});
+
+		</script>
 	</body>
 
 	</html>
