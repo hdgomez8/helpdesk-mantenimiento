@@ -109,6 +109,14 @@ switch ($_GET["op"]) {
         );
         break;
 
+        /* TODO: Asignamos el ticket  */
+        case "reasignar":
+            $ticket->update_ticket_reasignacion(
+                $_POST["tick_id"],
+                $_POST["usu_id_tecnico"]
+            );
+            break;
+
     /* TODO: Listado de tickets segun usuario,formato json para Datatable JS */
     case "listar_x_usu":
         $datos = $ticket->listar_ticket_x_usu($_POST["usu_id"]);
