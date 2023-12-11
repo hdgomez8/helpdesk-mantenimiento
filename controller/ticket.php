@@ -14,7 +14,7 @@ $documento = new Documento();
 /*TODO: opciones del controlador Ticket*/
 switch ($_GET["op"]) {
 
-        /* TODO: Insertar nuevo Ticket */
+    /* TODO: Insertar nuevo Ticket */
     case "insert":
         $datos = $ticket->insert_ticket($_POST["usu_id"], $_POST["emp_id"], $_POST["areas_id"], $_POST["ubicacion_id"], $_POST["tick_titulo"], $_POST["tick_descrip"]);
         /* TODO: Obtener el ID del ultimo registro insertado */
@@ -53,7 +53,7 @@ switch ($_GET["op"]) {
         echo json_encode($datos);
         break;
 
-        /* TODO: Actualizamos el ticket a cerrado y adicionamos una linea adicional */
+    /* TODO: Actualizamos el ticket a cerrado y adicionamos una linea adicional */
     case "update":
         $ticket->update_ticket($_POST["tick_id"]);
         $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"], $_POST["usu_id"]);
@@ -88,7 +88,7 @@ switch ($_GET["op"]) {
     case "update_x_jefe_cerrado":
         $ticket->update_ticket_x_jefe_cerrado($_POST["tick_id"]);
         break;
-        /* TODO: Reabrimos el ticket y adicionamos una linea adicional */
+    /* TODO: Reabrimos el ticket y adicionamos una linea adicional */
     case "update_x_cliente":
         $ticket->update_ticket_x_cliente($_POST["tick_id"], $_POST["opcionSatisfaccion"], $_POST["tickd_observacion"]);
         break;
@@ -97,7 +97,7 @@ switch ($_GET["op"]) {
         $ticket->insert_ticketdetalle_reabrir($_POST["tick_id"], $_POST["usu_id"]);
         break;
 
-        /* TODO: Asignamos el ticket  */
+    /* TODO: Asignamos el ticket  */
     case "asignar":
         $ticket->update_ticket_asignacion(
             $_POST["tick_id"],
@@ -109,7 +109,7 @@ switch ($_GET["op"]) {
         );
         break;
 
-        /* TODO: Listado de tickets segun usuario,formato json para Datatable JS */
+    /* TODO: Listado de tickets segun usuario,formato json para Datatable JS */
     case "listar_x_usu":
         $datos = $ticket->listar_ticket_x_usu($_POST["usu_id"]);
         $data = array();
@@ -192,7 +192,7 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<span class="label label-pill label-default">N/A</span>';
+                $sub_array[] = '<span class="label label-pill label-default">N/AA</span>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
@@ -204,7 +204,7 @@ switch ($_GET["op"]) {
             if (isset($_SESSION["rol_id"]) == "4") {
                 if ($row["tick_estado"] == "Cerrado") {
                     $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
-                }else {
+                } else {
                     $sub_array[] = '';
                 }
             } else {
@@ -333,7 +333,7 @@ switch ($_GET["op"]) {
         break;
 
 
-        /* TODO: Listado de tickets,formato json para Datatable JS */
+    /* TODO: Listado de tickets,formato json para Datatable JS */
     case "listar_x_usu_est_pend_cierr_cliente":
         $datos = $ticket->listar_x_usu_est_pend_cierr_cliente($_POST["usu_id"]);
         $data = array();
@@ -694,11 +694,11 @@ switch ($_GET["op"]) {
             }
 
             if ($row["usu_asig"] == null) {
-                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/A</span></a>';
+                $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/AA</span></a>';
             } else {
                 $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
                 foreach ($datos1 as $row1) {
-                    $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
+                    $sub_array1[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . 'a</span>';
                 }
             }
 
@@ -981,19 +981,27 @@ switch ($_GET["op"]) {
             if ($row["usu_asig"] == null) {
                 $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-warning">N/A</span></a>';
             } else {
-                $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
-                foreach ($datos1 as $row1) {
-                    $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
+                if ($row["tick_estado"] == "Asignado") {
+                    $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
+                    foreach ($datos1 as $row1) {
+                        $sub_array[] = '<a onClick="asignar(' . $row["tick_id"] . ');"><span class="label label-pill label-success">' . $row1["usu_nom"] . '</span></a>';
+                    }
+                } else {
+                    $datos1 = $usuario->get_usuario_x_id($row["usu_asig"]);
+                    foreach ($datos1 as $row1) {
+                        $sub_array[] = '<span class="label label-pill label-success">' . $row1["usu_nom"] . '</span>';
+                    }
                 }
             }
+
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
-            
+
             if ($row["tick_estado"] == "Cerrado") {
                 $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
-            }else {
+            } else {
                 $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal" disabled> <i class="fa fa-download" aria-hidden="true"></i></button>';
             }
-            
+
             $data[] = $sub_array;
         }
 
@@ -1006,7 +1014,7 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
 
-        /* TODO: Listado de tickets,formato json para Datatable JS, filtro avanzado*/
+    /* TODO: Listado de tickets,formato json para Datatable JS, filtro avanzado*/
 
     case "listar_auditoria":
         $datos = $ticket->listar_ticket_auditoria();
@@ -1103,7 +1111,7 @@ switch ($_GET["op"]) {
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
             if ($row["tick_estado"] == "Cerrado") {
                 $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal"> <i class="fa fa-download" aria-hidden="true"></i></button>';
-            }else {
+            } else {
                 $sub_array[] = '<button type="button" data-ticket-id="' . $row["tick_id"] . '" id="btnMostrarReporte" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pdfModal" disabled> <i class="fa fa-download" aria-hidden="true"></i></button>';
             }
             $data[] = $sub_array;
@@ -1118,7 +1126,7 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
 
-        /* TODO: Listado de tickets,formato json para Datatable JS, filtro avanzado*/
+    /* TODO: Listado de tickets,formato json para Datatable JS, filtro avanzado*/
 
 
     case "listar_filtro":
@@ -1145,13 +1153,13 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
 
-        /* TODO: Formato HTML para mostrar detalle de ticket con comentarios */
+    /* TODO: Formato HTML para mostrar detalle de ticket con comentarios */
 
     case "listardetalle":
         /* TODO: Listar todo el detalle segun tick_id */
         $datos = $ticket->listar_ticketdetalle_x_ticket($_POST["tick_id"]);
         break;
-        /* TODO: Mostrar informacion de ticket en formato JSON para la vista */
+    /* TODO: Mostrar informacion de ticket en formato JSON para la vista */
     case "listar_materiales":
         $datos = $ticket->get_materiales($_POST["tick_id"]);
         $data = array();
@@ -1171,6 +1179,7 @@ switch ($_GET["op"]) {
         );
         echo json_encode($results);
         break;
+
     case "mostrar";
         $datos = $ticket->listar_ticket_x_id($_POST["tick_id"]);
 
@@ -1195,8 +1204,12 @@ switch ($_GET["op"]) {
                 $output["nombre_soporte"] = $row["nombre_soporte"];
             }
             echo json_encode($output);
+        } else {
+            // Manejar el caso en que no se encuentren datos
+            echo json_encode(["error" => "No se encontraron datos para el ID proporcionado"]);
         }
         break;
+
     case "mostrarGestionar";
         $datos = $ticket->listar_ticket_x_id_gestionar($_POST["tick_id"]);
 
@@ -1296,7 +1309,7 @@ switch ($_GET["op"]) {
         echo json_encode($datos);
         break;
 
-        /* TODO: Total de ticket para vista de soporte */
+    /* TODO: Total de ticket para vista de soporte */
     case "insertdetalleasignacion":
         $datos = $ticket->insert_ticketdetalle_asignacion($_POST["tick_id"], $_POST["usu_id"]);
         if (is_array($datos) == true and count($datos) > 0) {
@@ -1451,7 +1464,7 @@ switch ($_GET["op"]) {
         }
         break;
 
-        /* TODO: Total de ticket Abierto para vista de soporte */
+    /* TODO: Total de ticket Abierto para vista de soporte */
     case "total";
 
         $datos = $ticket->get_ticket_total();
@@ -1463,7 +1476,7 @@ switch ($_GET["op"]) {
         }
         break;
 
-        /* TODO: Total de ticket Abierto para vista de soporte */
+    /* TODO: Total de ticket Abierto para vista de soporte */
     case "totalabierto";
         $datos = $ticket->get_ticket_totalabierto();
         if (is_array($datos) == true and count($datos) > 0) {
@@ -1474,7 +1487,7 @@ switch ($_GET["op"]) {
         }
         break;
 
-        /* TODO: Total de ticket Cerrados para vista de soporte */
+    /* TODO: Total de ticket Cerrados para vista de soporte */
     case "totalcerrado";
         $datos = $ticket->get_ticket_totalcerrado();
         if (is_array($datos) == true and count($datos) > 0) {
@@ -1485,13 +1498,13 @@ switch ($_GET["op"]) {
         }
         break;
 
-        /* TODO: Formato Json para grafico de soporte */
+    /* TODO: Formato Json para grafico de soporte */
     case "grafico";
         $datos = $ticket->get_ticket_grafico();
         echo json_encode($datos);
         break;
 
-        /* TODO: Insertar valor de encuesta,estrellas y comentarios */
+    /* TODO: Insertar valor de encuesta,estrellas y comentarios */
     case "encuesta":
         $ticket->insert_encuesta($_POST["tick_id"], $_POST["tick_estre"], $_POST["tick_coment"]);
         break;
