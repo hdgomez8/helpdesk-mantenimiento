@@ -1118,6 +1118,34 @@ class Ticket extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
+        /* TODO:Actualizar usu_asig con usuario de soporte asignado */
+        public function update_ticket_reasignacion(
+            $tick_id,
+            $usu_id_tecnico
+        ) {
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "update tm_ticket 
+                    set	
+                        usu_asig = ?,
+                        fech_asig = now()
+                    where
+                        tick_id = ?";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id_tecnico);
+            $sql->bindValue(2, $tick_id);
+            $sql->execute();
+    
+            /* TODO: Guardar Notificacion en la tabla */
+            $sql1 = "INSERT INTO tm_notificacion (not_id,usu_id,not_mensaje,tick_id,est) VALUES (null,?,'Se le ha asignado el ticket Nro : ',?,2)";
+            $sql1 = $conectar->prepare($sql1);
+            $sql1->bindValue(1, $usu_id_tecnico);
+            $sql1->bindValue(2, $tick_id);
+            $sql1->execute();
+    
+            return $resultado = $sql->fetchAll();
+        }
+
     /* TODO: Obtener total de tickets */
     public function get_ticket_total_gestionar()
     {

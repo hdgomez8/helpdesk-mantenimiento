@@ -13,7 +13,7 @@
 
                     <div class="form-group">
                         <label class="form-label" for="usu_asig">Responsable</label>
-                        <select class="select2" id="usu_asig" name="usu_asig" data-placeholder="Seleccionar" required>
+                        <select class="select2" id="usu_id_tecnico" name="usu_id_tecnico" data-placeholder="Seleccionar" required>
 
                         </select>
                     </div>
