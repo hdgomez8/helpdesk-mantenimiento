@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   /* TODO:LLenar Combo usuario asignar */
   $.post("../../controller/usuario.php?op=combo", function (data) {
-    $('#usu_asig').html(data);
+    $('#usu_id_tecnico').html(data);
   });
 
   var datosAdicionales = { "usu_id": usu_id };
@@ -78,7 +78,7 @@ function guardar(e) {
   e.preventDefault();
   var formData = new FormData($("#ticket_form")[0]);
   $.ajax({
-    url: "../../controller/ticket.php?op=asignar",
+    url: "../../controller/ticket.php?op=reasignar",
     type: "POST",
     data: formData,
     contentType: false,
