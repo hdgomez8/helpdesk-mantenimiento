@@ -131,19 +131,27 @@ if (isset($_SESSION["usu_id"])) {
               </fieldset>
             </div>
 
-
             <div class="col-lg-12">
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tickd_descripusu">Descripción</label>
                 <div class="summernote-theme-1">
                   <textarea id="tickd_descripusu" name="tickd_descripusu" class="summernote" name="name"></textarea>
                 </div>
+              </fieldset>
+            </div>
 
+            <div class="col-lg-12">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="tick_obs_cerr_dup">Observación Cerrar Por Duplicado</label>
+                <div class="summernote-theme-1">
+                  <textarea id="tick_obs_cerr_dup" name="tick_obs_cerr_dup" class="summernote" name="name"></textarea>
+                </div>
               </fieldset>
             </div>
 
             <div class="col-lg-12">
               <button type="button" id="btnasignar" class="btn btn-rounded btn-inline btn-primary">Asignar</button>
+              <button type="button" id="btncerrarduplicado" class="btn btn-rounded btn-inline btn-warning">Cerrar Por Duplicado</button>
             </div>
           </div>
         </div>

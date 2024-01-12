@@ -58,12 +58,15 @@ switch ($_GET["op"]) {
         $ticket->update_ticket($_POST["tick_id"]);
         $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"], $_POST["usu_id"]);
         break;
+
     case "update_x_tecnico":
         $ticket->update_ticket_x_tecnico($_POST["tick_id"], $_POST["tickd_descrip_diag_mant"], $_POST["tickd_descrip_act_rep_efec"]);
         break;
+
     case "update_x_tecnico_con_materiales":
         $ticket->update_ticket_x_tecnico_con_materiales($_POST["tick_id"], $_POST["tickd_descrip_diag_mant"], $_POST["tickd_descrip_act_rep_efec"]);
         break;
+
     case "update_x_tecnico_materiales":
         $tick_id = $_POST["tick_id"];
         $materiales_json = $_POST["materiales"];
@@ -76,22 +79,44 @@ switch ($_GET["op"]) {
 
         $ticket->update_ticket_x_tecnico_materiales($tick_id, $materiales, $tickd_descrip_diag_mant);
         break;
+
     case "update_x_tecnico_proveedor":
         $ticket->update_ticket_x_tecnico_proveedor($_POST["tick_id"]);
         break;
+
     case "update_x_jefe_reasignar_con_materiales":
         $ticket->update_ticket_x_jefe_reasignar_con_materiales($_POST["tick_id"], $_POST["campoRequisicion"]);
         break;
+
+    case "update_x_compras_cumple":
+        $ticket->update_x_compras_cumple($_POST["tick_id"], $_POST["obsCompras"]);
+        break;
+
+    case "update_x_compras_no_cumple":
+        $ticket->update_x_compras_no_cumple($_POST["tick_id"], $_POST["obsCompras"]);
+        break;
+
+    case "update_x_compras_en_gestion":
+        $ticket->update_x_compras_en_gestion($_POST["tick_id"], $_POST["obsComprasGest"]);
+        break;
+
+    case "update_x_compras_gestionado":
+        $ticket->update_x_compras_gestionado($_POST["tick_id"], $_POST["obsComprasGest"]);
+        break;
+
     case "update_x_jefe_envio_a_compras":
         $ticket->update_ticket_x_jefe_enviado_a_compras($_POST["tick_id"], $_POST["campoOrdenCompra"]);
         break;
+
     case "update_x_jefe_cerrado":
         $ticket->update_ticket_x_jefe_cerrado($_POST["tick_id"]);
         break;
+
     /* TODO: Reabrimos el ticket y adicionamos una linea adicional */
     case "update_x_cliente":
         $ticket->update_ticket_x_cliente($_POST["tick_id"], $_POST["opcionSatisfaccion"], $_POST["tickd_observacion"]);
         break;
+
     case "reabrir":
         $ticket->reabrir_ticket($_POST["tick_id"]);
         $ticket->insert_ticketdetalle_reabrir($_POST["tick_id"], $_POST["usu_id"]);
@@ -109,13 +134,20 @@ switch ($_GET["op"]) {
         );
         break;
 
-        /* TODO: Asignamos el ticket  */
-        case "reasignar":
-            $ticket->update_ticket_reasignacion(
-                $_POST["tick_id"],
-                $_POST["usu_id_tecnico"]
-            );
-            break;
+    case "cerrar_x_duplicado":
+        $ticket->cerrar_x_duplicado(
+            $_POST["tick_id"],
+            $_POST["tick_obs_cerr_dup"]
+        );
+        break;
+
+    /* TODO: Asignamos el ticket  */
+    case "reasignar":
+        $ticket->update_ticket_reasignacion(
+            $_POST["tick_id"],
+            $_POST["usu_id_tecnico"]
+        );
+        break;
 
     /* TODO: Listado de tickets segun usuario,formato json para Datatable JS */
     case "listar_x_usu":
@@ -839,6 +871,7 @@ switch ($_GET["op"]) {
         );
         echo json_encode($results);
         break;
+
     case "listar_x_compra_materiales":
         $datos = $ticket->listar_ticket_x_compra_materiales();
         $data = array();
@@ -847,6 +880,7 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["tick_id"];
             $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
+            $sub_array[] = $row["tick_estado"];
 
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
@@ -880,6 +914,7 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["tick_id"];
             $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["tick_titulo"];
+            $sub_array[] = $row["tick_estado"];
 
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
 
@@ -1257,6 +1292,7 @@ switch ($_GET["op"]) {
                 $output["emp_nom"] = $row["emp_nom"];
                 $output["nombre_soporte"] = $row["nombre_soporte"];
                 $output["tick_num_ord_compra"] = $row["tick_num_ord_compra"];
+                $output["obs_compras_sol"] = $row["obs_compras_sol"];
             }
             echo json_encode($output);
         }

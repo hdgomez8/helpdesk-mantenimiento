@@ -2,7 +2,7 @@
 require_once("../../config/conexion.php");
 $dir_proyecto = $settings['DIRECCION_PROYECTO'];
 if (isset($_SESSION["usu_id"])) {
-?>
+  ?>
   <!DOCTYPE html>
   <html>
   <?php require_once("../MainHead/head.php"); ?>
@@ -49,10 +49,12 @@ if (isset($_SESSION["usu_id"])) {
           <div class="row">
 
             <div class="col-lg-12">
-              <fieldset class="form-group">
-                <label class="form-label semibold" for="tick_titulo">Asunto</label>
-                <input type="text" class="form-control" id="tick_titulo" name="tick_titulo" readonly>
-              </fieldset>
+              <div class="col-lg-12">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="tick_titulo">Asunto</label>
+                  <input type="text" class="form-control" id="tick_titulo" name="tick_titulo" readonly>
+                </fieldset>
+              </div>
             </div>
 
             <div class="col-lg-12">
@@ -82,32 +84,35 @@ if (isset($_SESSION["usu_id"])) {
               </div>
             </div>
 
-            <div class="col-lg-3">
-              <fieldset class="form-group">
-                <label class="form-label semibold" for="tick_tipo_mantenimiento">Tipo De Mantenimniento</label>
-                <input type="text" class="form-control" id="tick_tipo_mantenimiento" name="tick_tipo_mantenimiento" readonly>
-              </fieldset>
-            </div>
+            <div class="col-lg-12">
+              <div class="col-lg-3">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="tick_tipo_mantenimiento">Tipo De Mantenimniento</label>
+                  <input type="text" class="form-control" id="tick_tipo_mantenimiento" name="tick_tipo_mantenimiento"
+                    readonly>
+                </fieldset>
+              </div>
 
-            <div class="col-lg-4">
-              <fieldset class="form-group">
-                <label class="form-label semibold" for="tick_sistemas">Sistemas</label>
-                <input type="text" class="form-control" id="tick_sistemas" name="tick_sistemas" readonly>
-              </fieldset>
-            </div>
+              <div class="col-lg-4">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="tick_sistemas">Sistemas</label>
+                  <input type="text" class="form-control" id="tick_sistemas" name="tick_sistemas" readonly>
+                </fieldset>
+              </div>
 
-            <div class="col-lg-2">
-              <fieldset class="form-group">
-                <label class="form-label semibold" for="tick_prioridad">Prioridad</label>
-                <input type="text" class="form-control" id="tick_prioridad" name="tick_prioridad" readonly>
-              </fieldset>
-            </div>
+              <div class="col-lg-2">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="tick_prioridad">Prioridad</label>
+                  <input type="text" class="form-control" id="tick_prioridad" name="tick_prioridad" readonly>
+                </fieldset>
+              </div>
 
-            <div class="col-lg-3">
-              <fieldset class="form-group">
-                <label class="form-label semibold" for="tecnico">Técnico</label>
-                <input type="text" class="form-control" id="tecnico" name="tecnico" readonly>
-              </fieldset>
+              <div class="col-lg-3">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="tecnico">Técnico</label>
+                  <input type="text" class="form-control" id="tecnico" name="tecnico" readonly>
+                </fieldset>
+              </div>
             </div>
 
             <div class="col-lg-12">
@@ -141,7 +146,8 @@ if (isset($_SESSION["usu_id"])) {
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tickd_descrip_diag_mant">Diagnostico de mantenimiento</label>
                 <div class="summernote-theme-1">
-                  <textarea id="tickd_descrip_diag_mant" class="summernote" name="tickd_descrip_diag_mant" readonly></textarea>
+                  <textarea id="tickd_descrip_diag_mant" class="summernote" name="tickd_descrip_diag_mant"
+                    readonly></textarea>
                 </div>
 
               </fieldset>
@@ -170,44 +176,66 @@ if (isset($_SESSION["usu_id"])) {
             <div>
               <div class="col-lg-4">
                 <fieldset class="form-group">
-                  <label class="form-label semibold" for="orden_compra">Orden De Compra</label>
+                  <label class="form-label semibold" for="orden_compra">Solicitud De Compra</label>
                   <input type="text" class="form-control" id="orden_compra" name="orden_compra" readonly>
                 </fieldset>
               </div>
             </div>
 
-            <div>
-              <div class="col-lg-4">
-                <div class="form-group">
-                  <label class="form-label semibold">¿Requision?</label>
-                  <div class="radio-group">
-                    <label>
-                      <input type="radio" name="req_orden" id="req_orden" value="requisicion" onclick="mostrarCampoRequisicion()"> Requisicion
-                    </label>
-                  </div>
+            <div class="col-lg-12" id="observacion_solicitud">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="tick_obs_comp">Observación Solicitud</label>
+                <div class="summernote-theme-1">
+                  <textarea id="tick_obs_comp" name="tick_obs_comp" class="summernote" name="tick_obs_comp"></textarea>
                 </div>
-              </div>
+              </fieldset>
+            </div>
 
-              <div class="col-lg-4" id="numero_requisicion" style="display: none;">
-                <label for="campoRequisicion">Numero de Requisicion</label>
-                <input class="form-control" type="text" id="campoRequisicion" placeholder="Escribe aquí">
-              </div>
-              <div class="col-lg-4" id="numero_orden_compra" style="display: none;">
-                <label for="campoOrdenCompra">Numero de Orden de Compra</label>
-                <input class="form-control" type="text" id="campoOrdenCompra" placeholder="Escribe aquí">
+            <div class="col-lg-12" id="observacion_gestion">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="tick_obs_gestion">Observación Gestion</label>
+                <div class="summernote-theme-1">
+                  <textarea id="tick_obs_gestion" name="tick_obs_gestion" class="summernote"
+                    name="tick_obs_gestion"></textarea>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="col-lg-12" id="estado_solicitud">
+              <div class="justify-content-center">
+                <div class="col-lg-2 text-center" id="cumple_solicitud">
+                  <button type="button" id="btncumple" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-success">Cumple</button>
+                </div>
+                <div class="col-lg-2 text-center" id="no_cumple_solicitud">
+                  <button type="button" id="btnnocumple" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-danger">No Cumple</button>
+                </div>
+                <div class="col-lg-2 text-center" id="cancelar">
+                  <button type="button" id="btncancelar" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-secondary">Cancelar</button>
+                </div>
               </div>
             </div>
 
-            <div class="col-lg-12">
+            <div class="col-lg-12" id="gestion_solicitud">
               <div>
-                <div class="col-lg-12" id="reasignar_ticket">
-                  <button type="button" id="btnreasignarticket" style="margin-top: 10px;" class="btn btn-rounded btn-inline btn-primary">Reasignar Ticket</button>
+                <div class="col-lg-2" id="gestionando_solicitud">
+                  <button type="button" id="btngestionandosolicitud" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-success">En Gestion</button>
                 </div>
-                <div class="col-lg-12" id="enviar_compras">
-                  <button type="button" id="btnenviarcompras" style="margin-top: 10px;" class="btn btn-rounded btn-inline btn-success">Enviar a Compras</button>
+                <div class="col-lg-2" id="cerrado">
+                  <button type="button" id="btncerrado" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-danger">Gestionado</button>
+                </div>
+                <div class="col-lg-1" id="cancelar">
+                  <button type="button" id="btncancelar" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-secondary">Cancelar</button>
                 </div>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>
@@ -223,7 +251,7 @@ if (isset($_SESSION["usu_id"])) {
   </body>
 
   </html>
-<?php
+  <?php
 } else {
   header("Location:" . Conectar::ruta() . "indexLoginMant.php");
 }

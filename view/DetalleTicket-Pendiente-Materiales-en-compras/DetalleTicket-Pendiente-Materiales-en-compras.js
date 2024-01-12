@@ -1,4 +1,4 @@
-function init() {}
+function init() { }
 
 $(document).ready(function () {
   var tick_id = getUrlParameter("ID");
@@ -74,10 +74,31 @@ $(document).ready(function () {
     autoResize: true,
   });
 
+  /* TODO: Inicializamos summernotejs */
+  $("#tick_obs_gestion").summernote({
+    height: 100,
+    lang: "es-ES",
+    callbacks: {
+      onImageUpload: function (image) {
+        console.log("Image detect...");
+        myimagetreat(image[0]);
+      },
+      onPaste: function (e) {
+        console.log("Text detect...");
+      },
+    },
+    toolbar: [
+      ["style", ["bold", "italic", "underline", "clear"]],
+      ["font", ["strikethrough", "superscript", "subscript"]],
+      ["fontsize", ["fontsize"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["height", ["height"]],
+    ],
+  });
+
   $("#tickd_descripusu").summernote("disable");
   $("#tickd_descrip_diag_mant").summernote("disable");
-  $("#reasignar_ticket").hide();
-  $("#enviar_compras").hide();
 
   /* TODO: Listamos documentos en caso hubieran */
   tabla = $("#documentos_data")
@@ -150,12 +171,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
   }
 };
 
-$(document).on("click", "#btnreasignarticket", function () {
+$(document).on("click", "#btncumple", function () {
   /* TODO: Preguntamos antes de cerrar el ticket */
   swal(
     {
       title: "HelpDesk",
-      text: "Esta seguro de Reasignar el Ticket?",
+      text: "Esta seguro de Cambiar el estado del Ticket?",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-warning",
@@ -166,16 +187,16 @@ $(document).on("click", "#btnreasignarticket", function () {
     function (isConfirm) {
       if (isConfirm) {
         var tick_id = getUrlParameter("ID");
-        var campoRequisicion =  $("#campoRequisicion").val();
+        var obsCompras = $("#tick_obs_comp").val();
 
         /* TODO: Actualizamos el ticket  */
         $.post(
-          "../../controller/ticket.php?op=update_x_jefe_reasignar_con_materiales",
+          "../../controller/ticket.php?op=update_x_compras_cumple",
           {
             tick_id: tick_id,
-            campoRequisicion:campoRequisicion,
+            obsCompras: obsCompras,
           },
-          function (data) {}
+          function (data) { }
         );
 
         /* TODO:Llamamos a funcion listardetalle */
@@ -183,30 +204,30 @@ $(document).on("click", "#btnreasignarticket", function () {
 
         /* TODO: Alerta de confirmacion */
         swal({
-          title: "Ticket Reasignado!",
-          text: "Ticket Reasignado correctamente.",
+          title: "Ticket Cumple Con Los Requisitos!",
+          text: "Ticket Cumple Con Los Requisitos.",
           type: "success",
           confirmButtonClass: "btn-success",
         },
-        function (result) {
-          console.log(result); // Imprimir el resultado en la consola
-          if (result) {
-            var dir_proyecto = document.getElementById("dir_proyecto").value;
-            window.location.href =
-            dir_proyecto + "view/ConsultarTicketPendientesCompras/";
-          }
-        });
+          function (result) {
+            console.log(result); // Imprimir el resultado en la consola
+            if (result) {
+              var dir_proyecto = document.getElementById("dir_proyecto").value;
+              window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesEnCompras/";
+            }
+          });
       }
     }
   );
 });
 
-$(document).on("click", "#btnenviarcompras", function () {
+$(document).on("click", "#btnnocumple", function () {
   /* TODO: Preguntamos antes de cerrar el ticket */
   swal(
     {
       title: "HelpDesk",
-      text: "Esta seguro de solicitar los materiales a compras?",
+      text: "Esta seguro de Cambiar el estado del Ticket?",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-warning",
@@ -217,16 +238,16 @@ $(document).on("click", "#btnenviarcompras", function () {
     function (isConfirm) {
       if (isConfirm) {
         var tick_id = getUrlParameter("ID");
-        var campoOrdenCompra =  $("#campoOrdenCompra").val();
+        var obsCompras = $("#tick_obs_comp").val();
 
         /* TODO: Actualizamos el ticket  */
         $.post(
-          "../../controller/ticket.php?op=update_x_jefe_envio_a_compras",
+          "../../controller/ticket.php?op=update_x_compras_no_cumple",
           {
             tick_id: tick_id,
-            campoOrdenCompra:campoOrdenCompra,
+            obsCompras: obsCompras,
           },
-          function (data) {}
+          function (data) { }
         );
 
         /* TODO:Llamamos a funcion listardetalle */
@@ -234,22 +255,148 @@ $(document).on("click", "#btnenviarcompras", function () {
 
         /* TODO: Alerta de confirmacion */
         swal({
-          title: "Ticket Reasignado!",
-          text: "Ticket Reasignado correctamente.",
+          title: "Ticket No Cumple Con Los Requisitos!",
+          text: "Ticket No Cumple Con Los Requisitos.",
           type: "success",
           confirmButtonClass: "btn-success",
         },
-        function (result) {
-          console.log(result); // Imprimir el resultado en la consola
-          if (result) {
-            var dir_proyecto = document.getElementById("dir_proyecto").value;
-            window.location.href =
-            dir_proyecto + "view/ConsultarTicketPendientesCompras/";
-          }
-        });
+          function (result) {
+            console.log(result); // Imprimir el resultado en la consola
+            if (result) {
+              var dir_proyecto = document.getElementById("dir_proyecto").value;
+              window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesEnCompras/";
+            }
+          });
       }
     }
   );
+});
+
+$(document).on("click", "#btngestionandosolicitud", function () {
+  /* TODO: Preguntamos antes de cerrar el ticket */
+  swal(
+    {
+      title: "HelpDesk",
+      text: "Esta seguro de Cambiar el estado del Ticket?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-warning",
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      closeOnConfirm: false,
+    },
+    function (isConfirm) {
+      if (isConfirm) {
+        var tick_id = getUrlParameter("ID");
+        var obsComprasGest = $("#tick_obs_gestion").val();
+
+        /* TODO: Actualizamos el ticket  */
+        $.post(
+          "../../controller/ticket.php?op=update_x_compras_en_gestion",
+          {
+            tick_id: tick_id,
+            obsComprasGest: obsComprasGest,
+          },
+          function (data) { }
+        );
+
+        /* TODO:Llamamos a funcion listardetalle */
+        listardetalle(tick_id);
+
+        /* TODO: Alerta de confirmacion */
+        swal({
+          title: "Ticket En Gestión!",
+          text: "Ticket En Gestión.",
+          type: "success",
+          confirmButtonClass: "btn-success",
+        },
+          function (result) {
+            console.log(result); // Imprimir el resultado en la consola
+            if (result) {
+              var dir_proyecto = document.getElementById("dir_proyecto").value;
+              window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesEnCompras/";
+            }
+          });
+      }
+    }
+  );
+});
+
+$(document).on("click", "#btncerrado", function () {
+  /* TODO: Preguntamos antes de cerrar el ticket */
+  swal(
+    {
+      title: "HelpDesk",
+      text: "Esta seguro de Cambiar el estado del Ticket?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-warning",
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      closeOnConfirm: false,
+    },
+    function (isConfirm) {
+      if (isConfirm) {
+        var tick_id = getUrlParameter("ID");
+        var obsComprasGest = $("#tick_obs_gestion").val();
+
+        /* TODO: Actualizamos el ticket  */
+        $.post(
+          "../../controller/ticket.php?op=update_x_compras_gestionado",
+          {
+            tick_id: tick_id,
+            obsComprasGest: obsComprasGest,
+          },
+          function (data) { }
+        );
+
+        /* TODO:Llamamos a funcion listardetalle */
+        listardetalle(tick_id);
+
+        /* TODO: Alerta de confirmacion */
+        swal({
+          title: "Ticket Gestionado!",
+          text: "Ticket Gestionado.",
+          type: "success",
+          confirmButtonClass: "btn-success",
+        },
+          function (result) {
+            console.log(result); // Imprimir el resultado en la consola
+            if (result) {
+              var dir_proyecto = document.getElementById("dir_proyecto").value;
+              window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesEnCompras/";
+            }
+          });
+      }
+    }
+  );
+});
+
+$(document).on("click", "#btncancelar", function () {
+  // Agrega tu lógica aquí
+  /* TODO: Alerta de confirmacion */
+  swal({
+    title: "¿Estás seguro?",
+    text: "¿Quieres cancelar la operación?",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Sí, cancelar",
+    cancelButtonText: "No, volver",
+    closeOnConfirm: false,
+    closeOnCancel: true
+  },
+    function (result) {
+      console.log(result); // Imprimir el resultado en la consola
+      if (result) {
+        var dir_proyecto = document.getElementById("dir_proyecto").value;
+        window.location.href =
+          dir_proyecto + "view/ConsultarTicketPendientesEnCompras/";
+      }
+    });
 });
 
 function listardetalle(tick_id) {
@@ -273,6 +420,32 @@ function listardetalle(tick_id) {
       $("#tickd_descrip_diag_mant").summernote("code", data.tick_diag_mant);
       $('#orden_compra').val(data.tick_num_ord_compra);
       $('#tecnico').val(data.nombre_soporte);
+      $("#tick_obs_comp").summernote("code", data.obs_compras_sol);
+
+      // Ocultar o mostrar campos basados en el estado
+      var estado = data.tick_estado.trim();
+      if (estado === 'Cumple Compras') {
+        $("#Compras").hide();
+        $("#observacion_compras").show();
+        $("#enviar_compras").show();
+        $("#estado_solicitud").hide();
+        $("#observacion_solicitud").hide();
+      } if (estado === 'En Compras') {
+        $("#Compras").hide();
+        $("#gestion_solicitud").hide();
+        $("#observacion_solicitud").show();
+        $("#enviar_compras").show();
+        $("#observacion_gestion").hide();
+      } if (estado === 'En Gestion - Compras') {
+        $("#Compras").hide();
+        $("#observacion_solicitud").hide();
+        $("#gestionando_solicitud").hide();
+        $("#estado_solicitud").hide();
+      } else {
+        $("#Compras").show();
+        $("#observacion_compras").hide();
+        $("#campo_orden_compra").hide();
+      }
     }
   );
 }
@@ -305,19 +478,5 @@ $(document).ready(function () {
     }
   );
 });
-
-function mostrarCampoRequisicion() {
-  document.getElementById("numero_requisicion").style.display = "block";
-  document.getElementById("numero_orden_compra").style.display = "none";
-  document.getElementById("reasignar_ticket").style.display = "block";
-  document.getElementById("enviar_compras").style.display = "none";
-}
-
-function mostrarCampoOrdenCompra() {
-  document.getElementById("numero_requisicion").style.display = "none";
-  document.getElementById("numero_orden_compra").style.display = "block";
-  document.getElementById("reasignar_ticket").style.display = "none";
-  document.getElementById("enviar_compras").style.display = "block";
-}
 
 init();
