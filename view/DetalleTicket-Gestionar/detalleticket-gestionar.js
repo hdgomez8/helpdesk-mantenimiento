@@ -1,4 +1,4 @@
-function init() {}
+function init() { }
 
 $(document).ready(function () {
   var tick_id = getUrlParameter("ID");
@@ -48,7 +48,7 @@ $(document).ready(function () {
     ],
   });
 
-  /* TODO: Inicializamos summernotejs */
+  // Inicializar Summernote
   $("#tickd_descripusu").summernote({
     height: 400,
     lang: "es-ES",
@@ -62,6 +62,18 @@ $(document).ready(function () {
     ],
   });
 
+  $("#tick_obs_cerr_dup").summernote({
+    height: 100,
+    lang: "es-ES",
+    toolbar: [
+      ["style", ["bold", "italic", "underline", "clear"]],
+      ["font", ["strikethrough", "superscript", "subscript"]],
+      ["fontsize", ["fontsize"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["height", ["height"]],
+    ],
+  });
 
   /* TODO: Listamos documentos en caso hubieran */
   tabla = $("#documentos_data")
@@ -178,7 +190,7 @@ $(document).on("click", "#btnasignar", function () {
         $.post(
           "../../controller/email.php?op=ticket_asignado",
           { tick_id: tick_id },
-          function (data) {}
+          function (data) { }
         );
 
         /* TODO: Limpiar inputfile */
@@ -195,13 +207,49 @@ $(document).on("click", "#btnasignar", function () {
             if (result) {
               var dir_proyecto = document.getElementById("dir_proyecto").value;
               window.location.href =
-              dir_proyecto + "view/GestionarTicket/";
+                dir_proyecto + "view/GestionarTicket/";
             }
           }
         );
       },
     });
   }
+});
+
+$(document).on("click", "#btncerrarduplicado", function () {
+  var tick_id = getUrlParameter("ID");
+  var tick_obs_cerr_dup = $("#tick_obs_cerr_dup").val();   
+
+  var formData = new FormData();
+  formData.append("tick_id", tick_id);
+  formData.append("tick_obs_cerr_dup", tick_obs_cerr_dup);
+
+  $.ajax({
+    url: "../../controller/ticket.php?op=cerrar_x_duplicado",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      listardetalle(tick_id);
+
+      swal(
+        {
+          title: "Correcto!",
+          text: "Cerrado Exitosamente",
+          icon: "success",
+        },
+        function (result) {
+          console.log(result); // Imprimir el resultado en la consola
+          if (result) {
+            var dir_proyecto = document.getElementById("dir_proyecto").value;
+            window.location.href =
+              dir_proyecto + "view/GestionarTicket/";
+          }
+        }
+      );
+    },
+  });
 });
 
 function listardetalle(tick_id) {
