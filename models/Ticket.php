@@ -460,6 +460,7 @@ class Ticket extends Conectar
         parent::set_names();
         $sql = "SELECT 
                         tm_ticket.tick_id,
+                        tm_ticket.tick_estado,
                         tm_usuario.usu_correo,
                         tm_ticket.tick_titulo,
                         tm_ticket.fech_crea,
@@ -473,7 +474,7 @@ class Ticket extends Conectar
                         WHERE
                         tm_ticket.est = 1
                         and 
-                        (tm_ticket.tick_estado = 'Pendiente Materiales')";
+                        (tm_ticket.tick_estado = 'Pendiente Materiales' or tm_ticket.tick_estado = 'No Cumple Compras' or tm_ticket.tick_estado = 'Gestionado - Compras')";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
@@ -488,6 +489,7 @@ class Ticket extends Conectar
                             tm_ticket.tick_id,
                             tm_usuario.usu_correo,
                             tm_ticket.tick_titulo,
+                            tm_ticket.tick_estado,
                             tm_ticket.fech_crea,
                             tm_ticket.fech_cierre,
                             tm_ticket.fech_sol_mater,
@@ -499,7 +501,7 @@ class Ticket extends Conectar
                             WHERE
                             tm_ticket.est = 1
                             and 
-                            (tm_ticket.tick_estado = 'En Compras')";
+                            (tm_ticket.tick_estado = 'En Compras' or tm_ticket.tick_estado = 'Cumple Compras' or tm_ticket.tick_estado = 'En Gestion - Compras')";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
@@ -628,7 +630,8 @@ class Ticket extends Conectar
                     tm_ubicacion.ubicacion_nom,
                     tm_usuario.usu_correo,
                     (select tm_usuario.usu_nom from tm_usuario where tm_usuario.usu_id = tm_ticket.usu_asig) as nombre_soporte,
-                    tm_ticket.tick_num_ord_compra
+                    tm_ticket.tick_num_ord_compra,
+                    tm_ticket.obs_compras_sol
                     FROM 
                     tm_ticket
                     INNER join tm_tipo_mantenimiento on tm_tipo_mantenimiento.tip_man_id = tm_ticket.tip_mant_id
@@ -1004,6 +1007,79 @@ class Ticket extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
+    public function update_x_compras_cumple($tick_id, $obsCompras)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "update tm_ticket 
+                            set	
+                                tick_estado = 'Cumple Compras',
+                                fech_compras_cumple = now(),
+                                obs_compras_sol = ?
+                            where
+                                tick_id = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $obsCompras);
+        $sql->bindValue(2, $tick_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
+    public function update_x_compras_no_cumple($tick_id, $obsCompras)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "update tm_ticket 
+                            set	
+                                tick_estado = 'No Cumple Compras',
+                                fech_compras_no_cumple = now(),
+                                obs_compras_sol = ?
+                            where
+                                tick_id = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $obsCompras);
+        $sql->bindValue(2, $tick_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
+
+    public function update_x_compras_en_gestion($tick_id, $obsComprasGest)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "update tm_ticket 
+                            set	
+                                tick_estado = 'En Gestion - Compras',
+                                fech_compras_en_gestion = now(),
+                                obs_compras_gest = ?
+                            where
+                                tick_id = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $obsComprasGest);
+        $sql->bindValue(2, $tick_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
+    public function update_x_compras_gestionado($tick_id, $obsComprasGest)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "update tm_ticket 
+                            set	
+                                tick_estado = 'Gestionado - Compras',
+                                fech_compras_gestionado = now(),
+                                obs_compras_gest = ?
+                            where
+                                tick_id = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $obsComprasGest);
+        $sql->bindValue(2, $tick_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
     /* TODO: actualizar ticket por tecnico */
     public function update_ticket_x_jefe_enviado_a_compras($tick_id, $campoOrdenCompra)
     {
@@ -1118,33 +1194,55 @@ class Ticket extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-        /* TODO:Actualizar usu_asig con usuario de soporte asignado */
-        public function update_ticket_reasignacion(
-            $tick_id,
-            $usu_id_tecnico
-        ) {
-            $conectar = parent::conexion();
-            parent::set_names();
-            $sql = "update tm_ticket 
+    /* TODO:Actualizar usu_asig con usuario de soporte asignado */
+    public function cerrar_x_duplicado(
+        $tick_id,
+        $tick_obs_cerr_dup
+    ) {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "update tm_ticket 
+                    set	
+                        tick_estado='Cerrado Por Duplicado',
+                        fech_cierr_tick_dupli = now(),
+                        obs_cerr_dup = ?
+                    where
+                        tick_id = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $tick_obs_cerr_dup);
+        $sql->bindValue(2, $tick_id);
+        $sql->execute();
+
+        return $resultado = $sql->fetchAll();
+    }
+
+    /* TODO:Actualizar usu_asig con usuario de soporte asignado */
+    public function update_ticket_reasignacion(
+        $tick_id,
+        $usu_id_tecnico
+    ) {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "update tm_ticket 
                     set	
                         usu_asig = ?,
                         fech_asig = now()
                     where
                         tick_id = ?";
-            $sql = $conectar->prepare($sql);
-            $sql->bindValue(1, $usu_id_tecnico);
-            $sql->bindValue(2, $tick_id);
-            $sql->execute();
-    
-            /* TODO: Guardar Notificacion en la tabla */
-            $sql1 = "INSERT INTO tm_notificacion (not_id,usu_id,not_mensaje,tick_id,est) VALUES (null,?,'Se le ha asignado el ticket Nro : ',?,2)";
-            $sql1 = $conectar->prepare($sql1);
-            $sql1->bindValue(1, $usu_id_tecnico);
-            $sql1->bindValue(2, $tick_id);
-            $sql1->execute();
-    
-            return $resultado = $sql->fetchAll();
-        }
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $usu_id_tecnico);
+        $sql->bindValue(2, $tick_id);
+        $sql->execute();
+
+        /* TODO: Guardar Notificacion en la tabla */
+        $sql1 = "INSERT INTO tm_notificacion (not_id,usu_id,not_mensaje,tick_id,est) VALUES (null,?,'Se le ha asignado el ticket Nro : ',?,2)";
+        $sql1 = $conectar->prepare($sql1);
+        $sql1->bindValue(1, $usu_id_tecnico);
+        $sql1->bindValue(2, $tick_id);
+        $sql1->execute();
+
+        return $resultado = $sql->fetchAll();
+    }
 
     /* TODO: Obtener total de tickets */
     public function get_ticket_total_gestionar()
@@ -1161,7 +1259,7 @@ class Ticket extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tick_estado = 'Pendiente Materiales'";
+        $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tick_estado = 'Pendiente Materiales' or tick_estado = 'No Cumple Compras' or tick_estado = 'Gestionado - Compras'";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
@@ -1254,7 +1352,7 @@ class Ticket extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tick_estado = 'En Compras'";
+        $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tick_estado = 'En Compras' or tick_estado = 'Cumple Compras' or tick_estado = 'En Gestion - Compras'";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();

@@ -1,4 +1,4 @@
-function init() {}
+function init() { }
 
 $(document).ready(function () {
   var tick_id = getUrlParameter("ID");
@@ -74,8 +74,24 @@ $(document).ready(function () {
     autoResize: true,
   });
 
+  /* TODO: Inicializamos summernotejs */
+  $("#tick_obs_comp").summernote({
+    height: 100,
+    lang: "es-ES",
+    toolbar: [
+      ["style", ["bold", "italic", "underline", "clear"]],
+      ["font", ["strikethrough", "superscript", "subscript"]],
+      ["fontsize", ["fontsize"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["height", ["height"]],
+    ],
+    autoResize: true,
+  });
+
   $("#tickd_descripusu").summernote("disable");
   $("#tickd_descrip_diag_mant").summernote("disable");
+  $("#tick_obs_comp").summernote("disable");
   $("#reasignar_ticket").hide();
   $("#enviar_compras").hide();
 
@@ -166,16 +182,16 @@ $(document).on("click", "#btnreasignarticket", function () {
     function (isConfirm) {
       if (isConfirm) {
         var tick_id = getUrlParameter("ID");
-        var campoRequisicion =  $("#campoRequisicion").val();
+        var campoRequisicion = $("#campoRequisicion").val();
 
         /* TODO: Actualizamos el ticket  */
         $.post(
           "../../controller/ticket.php?op=update_x_jefe_reasignar_con_materiales",
           {
             tick_id: tick_id,
-            campoRequisicion:campoRequisicion,
+            campoRequisicion: campoRequisicion,
           },
-          function (data) {}
+          function (data) { }
         );
 
         /* TODO:Llamamos a funcion listardetalle */
@@ -188,14 +204,14 @@ $(document).on("click", "#btnreasignarticket", function () {
           type: "success",
           confirmButtonClass: "btn-success",
         },
-        function (result) {
-          console.log(result); // Imprimir el resultado en la consola
-          if (result) {
-            var dir_proyecto = document.getElementById("dir_proyecto").value;
-            window.location.href =
-            dir_proyecto + "view/ConsultarTicketPendientesCompras/";
-          }
-        });
+          function (result) {
+            console.log(result); // Imprimir el resultado en la consola
+            if (result) {
+              var dir_proyecto = document.getElementById("dir_proyecto").value;
+              window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesCompras/";
+            }
+          });
       }
     }
   );
@@ -217,16 +233,16 @@ $(document).on("click", "#btnenviarcompras", function () {
     function (isConfirm) {
       if (isConfirm) {
         var tick_id = getUrlParameter("ID");
-        var campoOrdenCompra =  $("#campoOrdenCompra").val();
+        var campoOrdenCompra = $("#campoOrdenCompra").val();
 
         /* TODO: Actualizamos el ticket  */
         $.post(
           "../../controller/ticket.php?op=update_x_jefe_envio_a_compras",
           {
             tick_id: tick_id,
-            campoOrdenCompra:campoOrdenCompra,
+            campoOrdenCompra: campoOrdenCompra,
           },
-          function (data) {}
+          function (data) { }
         );
 
         /* TODO:Llamamos a funcion listardetalle */
@@ -239,14 +255,14 @@ $(document).on("click", "#btnenviarcompras", function () {
           type: "success",
           confirmButtonClass: "btn-success",
         },
-        function (result) {
-          console.log(result); // Imprimir el resultado en la consola
-          if (result) {
-            var dir_proyecto = document.getElementById("dir_proyecto").value;
-            window.location.href =
-            dir_proyecto + "view/ConsultarTicketPendientesCompras/";
-          }
-        });
+          function (result) {
+            console.log(result); // Imprimir el resultado en la consola
+            if (result) {
+              var dir_proyecto = document.getElementById("dir_proyecto").value;
+              window.location.href =
+                dir_proyecto + "view/ConsultarTicketPendientesCompras/";
+            }
+          });
       }
     }
   );
@@ -267,7 +283,25 @@ function listardetalle(tick_id) {
       $("#tick_prioridad").val(data.prio_nom);
       $("#tickd_descripusu").summernote("code", data.tick_descrip);
       $("#tickd_descrip_diag_mant").summernote("code", data.tick_diag_mant);
+      $("#tick_obs_comp").summernote("code", data.obs_compras_sol);
+      $('#campoOrdenCompra').val(data.tick_num_ord_compra);
       $('#orden_compra').val(data.tick_num_ord_compra);
+
+      // Ocultar o mostrar campos basados en el estado
+      var estado = data.tick_estado.trim();
+      if (estado === 'No Cumple Compras') {
+        $("#Compras").hide();
+        $("#observacion_compras").show();
+        $("#enviar_compras").show();
+      } if (estado === 'Gestionado - Compras') {
+        $("#label_req_orden").hide();
+        $("#campo_orden_compra").hide();
+        $("#observacion_compras").hide();
+      } else {
+        $("#Compras").show();
+        $("#observacion_compras").hide();
+        $("#campo_orden_compra").hide();
+      }
     }
   );
 }

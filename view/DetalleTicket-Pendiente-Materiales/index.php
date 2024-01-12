@@ -2,7 +2,7 @@
 require_once("../../config/conexion.php");
 $dir_proyecto = $settings['DIRECCION_PROYECTO'];
 if (isset($_SESSION["usu_id"])) {
-?>
+  ?>
   <!DOCTYPE html>
   <html>
   <?php require_once("../MainHead/head.php"); ?>
@@ -55,10 +55,11 @@ if (isset($_SESSION["usu_id"])) {
               </fieldset>
             </div>
 
-              <div class="col-lg-4">
-                <fieldset class="form-group">
+            <div class="col-lg-4">
+              <fieldset class="form-group">
                 <label class="form-label semibold" for="tick_tipo_mantenimiento">Tipo De Mantenimniento</label>
-                <input type="text" class="form-control" id="tick_tipo_mantenimiento" name="tick_tipo_mantenimiento" readonly>
+                <input type="text" class="form-control" id="tick_tipo_mantenimiento" name="tick_tipo_mantenimiento"
+                  readonly>
               </fieldset>
             </div>
 
@@ -107,7 +108,8 @@ if (isset($_SESSION["usu_id"])) {
               <fieldset class="form-group">
                 <label class="form-label semibold" for="tickd_descrip_diag_mant">Diagnostico de mantenimiento</label>
                 <div class="summernote-theme-1">
-                  <textarea id="tickd_descrip_diag_mant" class="summernote" name="tickd_descrip_diag_mant" readonly></textarea>
+                  <textarea id="tickd_descrip_diag_mant" class="summernote" name="tickd_descrip_diag_mant"
+                    readonly></textarea>
                 </div>
 
               </fieldset>
@@ -133,16 +135,18 @@ if (isset($_SESSION["usu_id"])) {
               </div>
             </div>
 
-            <div>
-                    <div class="col-lg-4">
+            <div id="Compras" >
+              <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-label semibold">¿Orden de Compra o Requision?</label>
+                  <label class="form-label semibold">¿Solicitud de Compra o Requision?</label>
                   <div class="radio-group">
-                    <label>
-                      <input type="radio" name="req_orden" id="req_orden" value="ordenCompra" onclick="mostrarCampoOrdenCompra()"> Orden de Compra
+                    <label id="label_req_orden">
+                      <input type="radio" name="req_orden" id="req_orden" value="ordenCompra"
+                        onclick="mostrarCampoOrdenCompra()"> Solicitud de Compra
                     </label>
                     <label>
-                      <input type="radio" name="req_orden" id="req_orden" value="requisicion" onclick="mostrarCampoRequisicion()"> Requisicion
+                      <input type="radio" name="req_orden" id="req_orden" value="requisicion"
+                        onclick="mostrarCampoRequisicion()"> Requisicion
                     </label>
                   </div>
                 </div>
@@ -153,18 +157,39 @@ if (isset($_SESSION["usu_id"])) {
                 <input class="form-control" type="text" id="campoRequisicion" placeholder="Escribe aquí">
               </div>
               <div class="col-lg-4" id="numero_orden_compra" style="display: none;">
-                <label for="campoOrdenCompra">Numero de Orden de Compra</label>
+                <label for="campoOrdenCompra">Numero de Solicitud de Compra</label>
                 <input class="form-control" type="text" id="campoOrdenCompra" placeholder="Escribe aquí">
               </div>
+            </div>
+
+            <div>
+              <div class="col-lg-4" id="campo_orden_compra">
+                <fieldset class="form-group">
+                  <label class="form-label semibold" for="orden_compra">Solicitud De Compra</label>
+                  <input type="text" class="form-control" id="orden_compra" name="orden_compra" readonly>
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="col-lg-12" id="observacion_compras" >
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="tick_obs_comp">Observación</label>
+                <div class="summernote-theme-1">
+                  <textarea id="tick_obs_comp" name="tick_obs_comp" class="summernote" name="tick_obs_comp"></textarea>
+                </div>
+
+              </fieldset>
             </div>
 
             <div class="col-lg-12">
               <div>
                 <div class="col-lg-12" id="reasignar_ticket">
-                  <button type="button" id="btnreasignarticket" style="margin-top: 10px;" class="btn btn-rounded btn-inline btn-primary">Reasignar Ticket</button>
+                  <button type="button" id="btnreasignarticket" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-primary">Reasignar Ticket</button>
                 </div>
                 <div class="col-lg-12" id="enviar_compras">
-                  <button type="button" id="btnenviarcompras" style="margin-top: 10px;" class="btn btn-rounded btn-inline btn-success">Enviar a Compras</button>
+                  <button type="button" id="btnenviarcompras" style="margin-top: 10px;"
+                    class="btn btn-rounded btn-inline btn-success">Enviar a Compras</button>
                 </div>
               </div>
             </div>
@@ -183,7 +208,7 @@ if (isset($_SESSION["usu_id"])) {
   </body>
 
   </html>
-<?php
+  <?php
 } else {
   header("Location:" . Conectar::ruta() . "indexLoginMant.php");
 }
