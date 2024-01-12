@@ -74,6 +74,7 @@ if (isset($_SESSION["usu_id"])) {
 									<th style="width: 5%;">Nro.<br/>Ticket</th>
 									<th class="d-none d-sm-table-cell" style="width: 30%;">Usuario</th>
 									<th class="d-none d-sm-table-cell" style="width: 30%;">Asunto</th>
+									<th class="d-none d-sm-table-cell" style="width: 30%;">Estado</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br/>Creación</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br/>Asignación</th>
 									<th class="d-none d-sm-table-cell" style="width: 10%;">Fecha<br/>Solicitud<br/>Materiales</th>
