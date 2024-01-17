@@ -105,7 +105,6 @@ $cantidad_material2 = isset($resultados[1]['cantidad']) ? $resultados[1]['cantid
 // $unidad_material4 = $resultados[3]['unidad_nombre'];
 // $cantidad_material4 = $resultados[3]['cantidad'];
 $fechaFirma = new DateTime('2023-11-30');
-;
 ob_start();
 ?>
 
@@ -637,13 +636,10 @@ ob_start();
                         src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_solicitante; ?>" alt=""
                         style="width: 120px; height: auto;"></td>
 
-                <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php if ($fech_cierre <= $fechaFirma) {
-                       // Si es antes del 30 de noviembre, muestra la primera firma
-                       echo '/helpdesk/public/img/firmas/Jefe-Milton.jpg';
-                   } else {
-                       // Si es después del 30 de noviembre, muestra la segunda firma
-                       echo '/helpdesk/public/img/firmas/Jefe-Edinson-Mantenimiento.jpg';
-                   } ?>" alt="" style="width: 120px; height: auto;"></td>
+                <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;">
+                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre <= $fechaFirma ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>"
+                        alt="" style="width: 120px; height: auto;">
+                </td>
 
                 <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img
                         src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_tecnico; ?>" alt=""
@@ -657,7 +653,7 @@ ob_start();
                 <td style="width: 234px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA
                     SOLICITANTE</td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA SUP.
-                    MANTENIMIENTO</td>
+                    MANTENIMIENTO<?php echo ($fech_cierre <= $fechaFirma ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?></td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">FIRMA
                     T&Eacute;CNICO DE MANTENIMIENTO&nbsp;</td>
             </tr>
