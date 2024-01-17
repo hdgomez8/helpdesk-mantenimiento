@@ -105,7 +105,6 @@ $cantidad_material2 = isset($resultados[1]['cantidad']) ? $resultados[1]['cantid
 // $unidad_material4 = $resultados[3]['unidad_nombre'];
 // $cantidad_material4 = $resultados[3]['cantidad'];
 $fechaFirma = new DateTime('2023-11-30');
-;
 ob_start();
 ?>
 
@@ -654,7 +653,7 @@ ob_start();
                 <td style="width: 234px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA
                     SOLICITANTE</td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA SUP.
-                    MANTENIMIENTO</td>
+                    MANTENIMIENTO<?php echo ($fech_cierre <= $fechaFirma ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?></td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">FIRMA
                     T&Eacute;CNICO DE MANTENIMIENTO&nbsp;</td>
             </tr>
