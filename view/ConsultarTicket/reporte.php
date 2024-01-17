@@ -641,7 +641,7 @@ ob_start();
                         style="width: 120px; height: auto;"></td>
 
                 <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;">
-                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada <= $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>"
+                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>"
                         alt="" style="width: 120px; height: auto;">
                 </td>
 
@@ -657,7 +657,7 @@ ob_start();
                 <td style="width: 234px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA
                     SOLICITANTE</td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA SUP.
-                    MANTENIMIENTO<?php echo ($fech_cierre_formateada <= $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?></td>
+                    MANTENIMIENTO<?php echo ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?></td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">FIRMA
                     T&Eacute;CNICO DE MANTENIMIENTO&nbsp;</td>
             </tr>
