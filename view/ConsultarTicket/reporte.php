@@ -105,9 +105,9 @@ $cantidad_material2 = isset($resultados[1]['cantidad']) ? $resultados[1]['cantid
 // $unidad_material4 = $resultados[3]['unidad_nombre'];
 // $cantidad_material4 = $resultados[3]['cantidad'];
 
-$fechaFirma = new DateTime('2023-11-30');
+$fechaFirma = '2023-11-30';
 // Obtener la fecha formateada para $fechaFirma
-$fechaFirmaFormateada = $fechaFirma->format('Y-m-d');
+$fechaFirmaFormateada = date("Y-m-d", strtotime($fechaFirma));
 
 ob_start();
 ?>
