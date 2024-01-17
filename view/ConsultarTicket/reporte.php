@@ -104,7 +104,13 @@ $cantidad_material2 = isset($resultados[1]['cantidad']) ? $resultados[1]['cantid
 // $nombre_material4 = $resultados[3]['nombre'];
 // $unidad_material4 = $resultados[3]['unidad_nombre'];
 // $cantidad_material4 = $resultados[3]['cantidad'];
+// Convertir $fech_cierre en un objeto DateTime
+$fechaCierreObj = new DateTime($fech_cierre);
 $fechaFirma = new DateTime('2023-11-30');
+
+// Comparar las fechas sin tener en cuenta la hora
+$fechaCierreObj->setTime(0, 0, 0);
+$fechaFirma->setTime(0, 0, 0);
 ob_start();
 ?>
 
@@ -653,7 +659,7 @@ ob_start();
                 <td style="width: 234px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA
                     SOLICITANTE</td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">&nbsp;FIRMA SUP.
-                    MANTENIMIENTO<?php echo $fech_cierre ($fech_cierre <= $fechaFirma ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?></td>
+                    MANTENIMIENTO<?php echo ($fechaCierreObj <= $fechaFirma ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?></td>
                 <td style="width: 240px; text-align: center;border: 1px solid black; font-size: 8px;">FIRMA
                     T&Eacute;CNICO DE MANTENIMIENTO&nbsp;</td>
             </tr>
