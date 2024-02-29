@@ -12,7 +12,7 @@ tick_descrip,
 tick_diag_mant,
 tick_descrip_act_rep_efec,
 emp_id,
-fech_cierre,
+fech_cier_tecn,
 fech_cier_usu,
 fech_asig,
 u1.usu_nom AS usu_nom,
@@ -43,7 +43,7 @@ $fech_asig = $result['fech_asig'];
 $usu_nom = $result['usu_nom'];
 $usu_ape = $result['usu_ape'];
 $satisfaccion = $result['satisfaccion'];
-$fech_cierre = $result['fech_cierre'];
+$fech_cierre = $result['fech_cier_tecn'];
 $fech_crea = $result['fech_crea'];
 $fech_cier_usu = $result['fech_cier_usu'];
 $emp_id = $result['emp_id'];
@@ -150,35 +150,29 @@ ob_start();
     <table style="height: 30px; width: 600px;">
         <tbody>
             <tr style="height: 60px;">
-                <td style="width: 80px; height: 70px; border: 1px solid black;"><img
-                        src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helpdesk/public/img/logo-colsalud.png" alt=""
-                        style="width: 80px; height: auto;"></td>
+                <td style="width: 80px; height: 70px; border: 1px solid black;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helpdesk/public/img/logo-colsalud.png" alt="" style="width: 80px; height: auto;"></td>
                 <td style="width: 500px; height: 70px; border: 1px solid black;text-align: center;"><strong>SOLICITUD DE
                         MANTENIMIENTO Y REPORTE DE SERVICIO</strong></td>
                 <td style="width: 20px; height: 70px; border: 1px solid black;">
                     <table style="height: 51px;" width="100">
                         <tbody>
                             <tr style="height: 20px;">
-                                <td
-                                    style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
+                                <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
                                     <strong>CODIGO:<strong><br />CMC-GI-FR-001-01
                                 </td>
                             </tr>
                             <tr style="height: 20px;">
-                                <td
-                                    style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
+                                <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
                                     <strong>FECHA DE EMISIÓN:<strong><br />31.01.17
                                 </td>
                             </tr>
                             <tr style="height: 20px;">
-                                <td
-                                    style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
+                                <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
                                     <strong>FECHA DE ACTUALIZACIÓN:<strong><br />13.10.23
                                 </td>
                             </tr>
                             <tr style="height: 20px;">
-                                <td
-                                    style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
+                                <td style="width: 130px; height: 22px; border: 1px solid black;font-size: 8px;text-align: center;">
                                     <strong>VERSION: 007<strong>
                                 </td>
                             </tr>
@@ -191,8 +185,7 @@ ob_start();
     <table style="height: 6px;" width="600px">
         <tbody>
             <tr style="height: 6px;">
-                <td
-                    style="width: 720px; height: 6px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 6px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>SOLICITUD</strong>
                 </td>
             </tr>
@@ -207,12 +200,10 @@ ob_start();
                         echo $fech_crea_formateada;
                         ?>
                     </span>
-                <td style="width: 350px;border: 1px solid black;font-size: 10px;">SOLICITANTE: <span
-                        style="font-size: 12px;">
+                <td style="width: 350px;border: 1px solid black;font-size: 10px;">SOLICITANTE: <span style="font-size: 12px;">
                         <?php echo $correo_creador; ?>
                     </span></td>
-                <td style="width: 250px;border: 1px solid black;font-size: 10px;">SERVICIO: <span
-                        style="font-size: 12px;">
+                <td style="width: 250px;border: 1px solid black;font-size: 10px;">SERVICIO: <span style="font-size: 12px;">
                         <?php echo $areas_nom; ?>
                     </span></td>
             </tr>
@@ -234,29 +225,25 @@ ob_start();
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 COLSALUD</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left; <?php echo $emp_id == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left; <?php echo $emp_id == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">CENTRO
                                                 DE IMÁGENES</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $emp_id == '3' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $emp_id == '3' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 CUIDADO CRITICO</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $emp_id == '2' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $emp_id == '2' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 CARDIOSALUD</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $emp_id == '4' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $emp_id == '4' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                     </table>
@@ -269,8 +256,7 @@ ob_start();
                 <td style="width: 400px; height: 113.875px; border: 1px solid black;">
                     <table style="width: 100%;">
                         <tr>
-                            <td
-                                style="font-size: 10px; text-align: left; vertical-align: top;height: 113.875px;line-height: 1;">
+                            <td style="font-size: 10px; text-align: left; vertical-align: top;height: 113.875px;line-height: 1;">
                                 <strong>DESCRIPCION DE LA SOLICITUD:</strong><span style="font-size: 12px;">
                                     <?php echo $tick_descrip ?>
                                 </span>
@@ -284,8 +270,7 @@ ob_start();
     <table style="height: 10px;" width="600px">
         <tbody>
             <tr style="height: 10px;">
-                <td
-                    style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>PLANIFICACION DE LA SOLICITUD(Espacio reservado personal de mantenimiento)</strong>
                 </td>
             </tr>
@@ -307,29 +292,25 @@ ob_start();
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 CORRECTIVO</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 PREVENTIVO</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '2' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '2' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 PREDICTIVO</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '3' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '3' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 TRASLADO Y<br />MOVIMINETO</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '4' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $tip_mant_id == '4' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                     </table>
@@ -343,50 +324,43 @@ ob_start();
                                         <tr>
                                             <td style="height:20px;width: 45%; font-size: 8px; text-align: left;">
                                                 ELECTRICO</td>
-                                            <td
-                                                style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px;width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px; width: 45%; font-size: 8px; text-align: left;">AIRES
                                                 ACONDICIONADOS</td>
-                                            <td
-                                                style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '2' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '2' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px; width: 45%; font-size: 8px; text-align: left;">
                                                 ELECTRO MECANICO</td>
-                                            <td
-                                                style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '3' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '3' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px; width: 45%; font-size: 8px; text-align: left;">
                                                 HIDROSANITARIO</td>
-                                            <td
-                                                style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '4' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '4' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px; width: 45%; font-size: 8px; text-align: left;">
                                                 INFRAESTRUCTURA</td>
-                                            <td
-                                                style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '5' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '5' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px; width: 45%; font-size: 8px; text-align: left;">
                                                 MUEBLES Y ENCERES</td>
-                                            <td
-                                                style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '6' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '6' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px; width: 45%; font-size: 8px; text-align: left;">GASES
                                                 MEDICINALES</td>
-                                            <td
-                                                style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '7' ? 'background-color: black;' : 'background-color: white;'; ?>">
+                                            <td style="height:20px; width: 5%;border: 1px solid black; font-size: 8px; text-align: left;<?php echo $sis_id == '7' ? 'background-color: black;' : 'background-color: white;'; ?>">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         </tr>
                                     </table>
@@ -399,23 +373,20 @@ ob_start();
                                             </td>
                                             <td style="height:19px;width: 20%; font-size: 8px; text-align: left;">NO. DE
                                                 SOLICITUD</td>
-                                            <td style="height:19px;width: 35%;border: 1px solid black; font-size: 12px; text-align: center;"
-                                                colspan="3">
+                                            <td style="height:19px;width: 35%;border: 1px solid black; font-size: 12px; text-align: center;" colspan="3">
                                                 <?php echo $tick_id; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 10%; font-size: 8px; text-align: left;">FECHA
                                                 ASIGNACION:</td>
-                                            <td
-                                                style="height:20px;width: 20%;border: 1px solid black; font-size: 12px; text-align: center;">
+                                            <td style="height:20px;width: 20%;border: 1px solid black; font-size: 12px; text-align: center;">
                                                 <?php $fecha_asig_formateada = date("Y-m-d", strtotime($fech_asig));
                                                 echo $fecha_asig_formateada; ?>
                                             </td>
                                             <td style="height:20px;width: 20%; font-size: 8px; text-align: left;">
                                                 TECNICO/EMPRESA</td>
-                                            <td style="height:20px;width: 35%;border: 1px solid black; font-size: 12px; text-align: center;"
-                                                colspan="3">
+                                            <td style="height:20px;width: 35%;border: 1px solid black; font-size: 12px; text-align: center;" colspan="3">
                                                 <?php $nombre_completo_tecnico = $usu_nom . ' ' . $usu_ape;
                                                 echo $nombre_completo_tecnico; ?>
                                             </td>
@@ -423,43 +394,37 @@ ob_start();
                                         <tr>
                                             <td style="height:20px;width: 5%; font-size: 8px; text-align: left;">FECHA
                                                 INICIO:</td>
-                                            <td
-                                                style="height:20px;width: 25%;border: 1px solid black; font-size: 12px; text-align: center;">
+                                            <td style="height:20px;width: 25%;border: 1px solid black; font-size: 12px; text-align: center;">
                                                 <?php $fecha_asig_formateada = date("Y-m-d", strtotime($fech_asig));
                                                 echo $fecha_asig_formateada; ?>
                                             </td>
                                             <td style="height:20px; width: 20%; font-size: 8px; text-align: left;">FECHA
                                                 FINAL:</td>
-                                            <td
-                                                style="height:20px; width: 20%;border: 1px solid black; font-size: 12px; text-align: center;">
+                                            <td style="height:20px; width: 20%;border: 1px solid black; font-size: 12px; text-align: center;">
                                                 <?php $fech_cierre_formateada = date("Y-m-d", strtotime($fech_cierre));
                                                 echo $fech_cierre_formateada; ?>
                                             </td>
                                             <td style="height:20px; width: 5%; font-size: 8px; text-align: left;">H/H
                                             </td>
-                                            <td
-                                                style="height:20px; width: 10%;border: 1px solid black; font-size: 12px; text-align: center;">
+                                            <td style="height:20px; width: 10%;border: 1px solid black; font-size: 12px; text-align: center;">
                                                 <?php echo "10"; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 20%; font-size: 8px; text-align: left;">
                                                 CONTACTO SERVICIO:</td>
-                                            <td style="height:20px;width: 70%;border: 1px solid black; font-size: 14px; text-align: left;"
-                                                colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <td style="height:20px;width: 70%;border: 1px solid black; font-size: 14px; text-align: left;" colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <?php echo $correo_creador; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="height:20px;width: 15%; font-size: 8px; text-align: left;">NO.
                                                 SOLICITUD COMPRAS:</td>
-                                            <td
-                                                style="height:20px;width: 20%;border: 1px solid black; font-size: 8px; text-align: left;">
+                                            <td style="height:20px;width: 20%;border: 1px solid black; font-size: 8px; text-align: left;">
                                                 &nbsp;</td>
                                             <td style="height:20px; width:20%; font-size: 8px; text-align: left;">NO.
                                                 REQUISICION:</td>
-                                            <td style="height:20px; width: 30%;border: 1px solid black; font-size: 14px; text-align: left;"
-                                                colspan="3">&nbsp;&nbsp;
+                                            <td style="height:20px; width: 30%;border: 1px solid black; font-size: 14px; text-align: left;" colspan="3">&nbsp;&nbsp;
                                                 <?php echo $tick_num_requisicion; ?>
                                             </td>
                                         </tr>
@@ -476,8 +441,7 @@ ob_start();
     <table style="height: 10px;" width="600px">
         <tbody>
             <tr style="height: 10px;">
-                <td
-                    style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>DIAGNOSTICO DE MANTENIMIENTO(Espacio reservado personal de mantenimiento)</strong>
                 </td>
             </tr>
@@ -486,8 +450,7 @@ ob_start();
     <table style="height: 65px;" width="724px">
         <tbody>
             <tr>
-                <td style="width: 690px;height: 65px;border: 1px solid black;line-height: 1;"><span
-                        style="font-size: 12px;">
+                <td style="width: 690px;height: 65px;border: 1px solid black;line-height: 1;"><span style="font-size: 12px;">
                         <?php echo $tick_diag_mant ?>
                     </span></td>
             </tr>
@@ -496,8 +459,7 @@ ob_start();
     <table style="height: 10px;" width="600px">
         <tbody>
             <tr style="height: 10px;">
-                <td
-                    style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>REPUESTOS Y/O ACCESORIOS INSTALADOS</strong>
                 </td>
             </tr>
@@ -564,8 +526,7 @@ ob_start();
     <table style="height: 10px;" width="600px">
         <tbody>
             <tr style="height: 10px;">
-                <td
-                    style="width: 720px; height: 9px; text-align: center; vertical-align: middle;line-height: 1; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 9px; text-align: center; vertical-align: middle;line-height: 1; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>DESCRIPCION DE ACTIVIDADES O REPARACIONES EFECTUADAS</strong>
                 </td>
             </tr>
@@ -574,8 +535,7 @@ ob_start();
     <table style="height: 55px;" width="720px">
         <tbody>
             <tr>
-                <td style="width: 720px;height: 55px;border: 1px solid black;line-height: 1;"><span
-                        style="font-size: 12px;">
+                <td style="width: 720px;height: 55px;border: 1px solid black;line-height: 1;"><span style="font-size: 12px;">
                         <?php echo $tick_descrip_act_rep_efec ?>
                     </span></td>
             </tr>
@@ -584,8 +544,7 @@ ob_start();
     <table style="height: 10px;" width="600px">
         <tbody>
             <tr style="height: 10px;">
-                <td
-                    style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>EVALUACI&Oacute;N DEL SERVICIO</strong>
                 </td>
             </tr>
@@ -599,10 +558,8 @@ ob_start();
                         <tbody>
                             <tr>
                                 <td style="width: 475px;font-size: 12px;">&nbsp;Recibio trabajo a satisfaccion: SI
-                                    &nbsp;<span
-                                        style="border: 1px solid black;<?php echo $satisfaccion == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
-                                    NO &nbsp;<span
-                                        style="border: 1px solid black;<?php echo $satisfaccion == '0' ? 'background-color: black;' : 'background-color: white;'; ?>">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    &nbsp;<span style="border: 1px solid black;<?php echo $satisfaccion == '1' ? 'background-color: black;' : 'background-color: white;'; ?>">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
+                                    NO &nbsp;<span style="border: 1px solid black;<?php echo $satisfaccion == '0' ? 'background-color: black;' : 'background-color: white;'; ?>">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 </td>
                                 <td style="width: 235px;font-size: 12px;">&nbsp;Fecha de Recibido:&nbsp;&nbsp;&nbsp;
                                     <?php $fecha_cier_usu_formateada = date("Y-m-d", strtotime($fech_cier_usu));
@@ -618,8 +575,7 @@ ob_start();
     <table style="height: 10px;" width="600px">
         <tbody>
             <tr style="height: 10px;">
-                <td
-                    style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
+                <td style="width: 720px; height: 10px; text-align: center; vertical-align: middle; border: 1px solid black;font-size: 10px;background-color: #dcdcdc;">
                     <strong>OBSERVACIONES</strong>
                 </td>
             </tr>
@@ -628,26 +584,30 @@ ob_start();
     <table style="height: 30px;" width="720px">
         <tbody>
             <tr>
-                <td style="width: 720px;height: 30px;border: 1px solid black;line-height: 1;"><span
-                        style="font-size: 12px;"></span></td>
+                <td style="width: 720px;height: 30px;border: 1px solid black;line-height: 1;"><span style="font-size: 12px;"></span></td>
             </tr>
         </tbody>
     </table>
     <table width="710px">
         <tbody>
             <tr style="height: 50;">
-                <td style="width: 234px; height: 50px;border: 1px solid black;text-align: center;"><img
-                        src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_solicitante; ?>" alt=""
-                        style="width: 120px; height: auto;"></td>
-
-                <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;">
-                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>"
-                        alt="" style="width: 120px; height: auto;">
+                <td style="width: 234px; height: 50px;border: 1px solid black;text-align: center;">
+                    <?php 
+                    $ruta_firma = 'Jefe-Milton.jpg' ;
+                    if ($firma_solicitante == "/helpdesk/public/img/firmas/{$ruta_firma}") {
+                        echo '<img src="http://' . $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg') . '" alt="" style="width: 120px; height: auto;">';
+                    } else {
+                        // Manejar la situación en la que la firma_solicitante no coincide con la condición
+                        echo '<img src="http://' . $_SERVER['HTTP_HOST'] . $firma_solicitante . '" alt="" style="width: 120px; height: auto;">';
+                    }
+                    ?>   
                 </td>
 
-                <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img
-                        src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_tecnico; ?>" alt=""
-                        style="width: 120px; height: auto;"></td>
+                <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;">
+                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>" alt="" style="width: 120px; height: auto;">
+                </td>
+
+                <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_tecnico; ?>" alt="" style="width: 120px; height: auto;"></td>
             </tr>
         </tbody>
     </table>
