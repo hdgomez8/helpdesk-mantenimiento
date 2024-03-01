@@ -264,72 +264,140 @@ $(document).on("click", "#btncerrarticket", function () {
   var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
   var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
   var opcionMateriales = $("input[name='opcionMateriales']:checked").val();
+  var estadoTicket = document.getElementById("lblestado").textContent;
+  console.log(estadoTicket);
 
-  if (!tickd_descrip_diag_mant.trim() || !tickd_descrip_act_rep_efec.trim() || opcionMateriales === "" || opcionMateriales === null || opcionMateriales === undefined) {
-    // El campo está vacío, muestra un mensaje de error
-    swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento y una descripcion de actividad antes de Cerrar la solicitud.", "error");
-  } else {
-    /* TODO: Preguntamos antes de cerrar el ticket */
-    swal(
-      {
-        title: "HelpDesk",
-        text: "Esta seguro de Cerrar el Ticket?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn-warning",
-        confirmButtonText: "Si",
-        cancelButtonText: "No",
-        closeOnConfirm: false,
-      },
-      function (isConfirm) {
-        if (isConfirm) {
-          var tick_id = getUrlParameter("ID");
-          var usu_id = $("#user_idx").val();
-          var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
-          var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
+  if (estadoTicket == 'Pendiente Proveedor') {
+    if (!tickd_descrip_diag_mant.trim() || !tickd_descrip_act_rep_efec.trim()) {
+      // El campo está vacío, muestra un mensaje de error
+      swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento y una descripcion de actividad antes de Cerrar la solicitud.", "error");
+    } else {
+      /* TODO: Preguntamos antes de cerrar el ticket */
+      swal(
+        {
+          title: "HelpDesk",
+          text: "Esta seguro de Cerrar el Ticket?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-warning",
+          confirmButtonText: "Si",
+          cancelButtonText: "No",
+          closeOnConfirm: false,
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+            var tick_id = getUrlParameter("ID");
+            var usu_id = $("#user_idx").val();
+            var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
+            var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
 
-          /* TODO: Actualizamos el ticket  */
-          $.post(
-            "../../controller/ticket.php?op=update_x_tecnico",
-            {
-              tick_id: tick_id,
-              tickd_descrip_diag_mant: tickd_descrip_diag_mant,
-              tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec,
-            },
-            function (data) { }
-          );
+            /* TODO: Actualizamos el ticket  */
+            $.post(
+              "../../controller/ticket.php?op=update_x_tecnico",
+              {
+                tick_id: tick_id,
+                tickd_descrip_diag_mant: tickd_descrip_diag_mant,
+                tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec,
+              },
+              function (data) { }
+            );
 
-          $.post(
-            "../../controller/email.php?op=ticket_cerrado",
-            { tick_id: tick_id },
-            function (data) {
-              // Tu código de éxito aquí
-            }
-          ).fail(function (jqXHR, textStatus, errorThrown) {
-            console.error("Error al enviar el correo:", textStatus, errorThrown);
-          });
-
-          swal(
-            {
-              title: "Ticket Cerrado!",
-              text: "Ticket Cerrado correctamente.",
-              type: "success",
-              confirmButtonClass: "btn-success",
-            },
-            function (result) {
-              console.log(result); // Imprimir el resultado en la consola
-              if (result) {
-                var dir_proyecto = document.getElementById("dir_proyecto").value;
-                window.location.href =
-                  dir_proyecto + "view/ConsultarTicketPendientes/";
+            $.post(
+              "../../controller/email.php?op=ticket_cerrado",
+              { tick_id: tick_id },
+              function (data) {
+                // Tu código de éxito aquí
               }
-            }
-          );
-        }
-      }
-    );
-  }
+            ).fail(function (jqXHR, textStatus, errorThrown) {
+              console.error("Error al enviar el correo:", textStatus, errorThrown);
+            });
 
+            swal(
+              {
+                title: "Ticket Cerrado!",
+                text: "Ticket Cerrado correctamente.",
+                type: "success",
+                confirmButtonClass: "btn-success",
+              },
+              function (result) {
+                console.log(result); // Imprimir el resultado en la consola
+                if (result) {
+                  var dir_proyecto = document.getElementById("dir_proyecto").value;
+                  window.location.href =
+                    dir_proyecto + "view/ConsultarTicketPendientesProveedores/";
+                }
+              }
+            );
+          }
+        }
+      );
+    }
+  } else {
+    if (!tickd_descrip_diag_mant.trim() || !tickd_descrip_act_rep_efec.trim() || opcionMateriales === "" || opcionMateriales === null || opcionMateriales === undefined) {
+      // El campo está vacío, muestra un mensaje de error
+      swal("Error", "Por favor, ingrese una descripción del diagnóstico de mantenimiento y una descripcion de actividad antes de Cerrar la solicitud.", "error");
+    } else {
+      /* TODO: Preguntamos antes de cerrar el ticket */
+      swal(
+        {
+          title: "HelpDesk",
+          text: "Esta seguro de Cerrar el Ticket?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-warning",
+          confirmButtonText: "Si",
+          cancelButtonText: "No",
+          closeOnConfirm: false,
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+            var tick_id = getUrlParameter("ID");
+            var usu_id = $("#user_idx").val();
+            var tickd_descrip_diag_mant = $("#tickd_descrip_diag_mant").val();
+            var tickd_descrip_act_rep_efec = $("#tickd_descrip_act_rep_efec").val();
+
+            /* TODO: Actualizamos el ticket  */
+            $.post(
+              "../../controller/ticket.php?op=update_x_tecnico",
+              {
+                tick_id: tick_id,
+                tickd_descrip_diag_mant: tickd_descrip_diag_mant,
+                tickd_descrip_act_rep_efec: tickd_descrip_act_rep_efec,
+              },
+              function (data) { }
+            );
+
+            $.post(
+              "../../controller/email.php?op=ticket_cerrado",
+              { tick_id: tick_id },
+              function (data) {
+                // Tu código de éxito aquí
+              }
+            ).fail(function (jqXHR, textStatus, errorThrown) {
+              console.error("Error al enviar el correo:", textStatus, errorThrown);
+            });
+
+            swal(
+              {
+                title: "Ticket Cerrado!",
+                text: "Ticket Cerrado correctamente.",
+                type: "success",
+                confirmButtonClass: "btn-success",
+              },
+              function (result) {
+                console.log(result); // Imprimir el resultado en la consola
+                if (result) {
+                  var dir_proyecto = document.getElementById("dir_proyecto").value;
+                  window.location.href =
+                    dir_proyecto + "view/ConsultarTicketPendientes/";
+                }
+              }
+            );
+          }
+        }
+      );
+    }
+  }
 });
 
 $(document).on("click", "#btnsolicitarmateriales", function () {
