@@ -108,7 +108,7 @@ $cantidad_material2 = isset($resultados[1]['cantidad']) ? $resultados[1]['cantid
 $fechaFirma = '2023-11-30';
 // Obtener la fecha formateada para $fechaFirma
 $fechaFirmaFormateada = date("Y-m-d", strtotime($fechaFirma));
-
+$fech_inicio_formateada = date("Y-m-d", strtotime('01-01-2023'));
 ob_start();
 ?>
 
@@ -595,7 +595,7 @@ ob_start();
                     <?php 
                     $ruta_firma = 'Jefe-Milton.jpg' ;
                     if ($firma_solicitante == "/helpdesk/public/img/firmas/{$ruta_firma}") {
-                        echo '<img src="http://' . $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg') . '" alt="" style="width: 120px; height: auto;">';
+                        echo '<img src="http://' . $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada && $fech_cierre_formateada > $fech_inicio_formateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg') . '" alt="" style="width: 120px; height: auto;">';
                     } else {
                         // Manejar la situación en la que la firma_solicitante no coincide con la condición
                         echo '<img src="http://' . $_SERVER['HTTP_HOST'] . $firma_solicitante . '" alt="" style="width: 120px; height: auto;">';
@@ -604,7 +604,7 @@ ob_start();
                 </td>
 
                 <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;">
-                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>" alt="" style="width: 120px; height: auto;">
+                    <img src="http://<?php echo $_SERVER['HTTP_HOST'] . '/helpdesk/public/img/firmas/' . ($fech_cierre_formateada < $fechaFirmaFormateada && $fech_cierre_formateada > $fech_inicio_formateada ? 'Jefe-Milton.jpg' : 'Jefe-Edinson-Mantenimiento.jpg'); ?>" alt="" style="width: 120px; height: auto;">
                 </td>
 
                 <td style="width: 240px; height: 50px;border: 1px solid black;text-align: center;"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $firma_tecnico; ?>" alt="" style="width: 120px; height: auto;"></td>

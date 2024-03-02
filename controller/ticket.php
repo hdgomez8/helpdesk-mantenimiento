@@ -1036,6 +1036,9 @@ switch ($_GET["op"]) {
                     }
                 }
             }
+            $sub_array[] = $row["tip_man_nom"];
+            $sub_array[] = $row["sis_nom"];
+            $sub_array[] = $row["prio_nom"];
 
             $sub_array[] = '<button type="button" onClick="ver(' . $row["tick_id"] . ');"  id="' . $row["tick_id"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-wrench" aria-hidden="true"></i></button>';
 
